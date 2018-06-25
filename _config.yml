@@ -5,7 +5,7 @@ header-img: img/home-bg.jpg
 email: 914301050@qq.com
 description: "Javen的GitHub博客网站"
 keyword: "Javen,博客"
-url: "http://Naiba01.github.io"              # your host, for absolute URL
+url: "https://Naiba01.github.io"              # your host, for absolute URL
 baseurl: ""         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
