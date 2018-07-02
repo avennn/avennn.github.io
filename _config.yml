@@ -1,5 +1,6 @@
 # Site settings
-title: Javen Blog
+title: Javen的博客
+author: Javen Leung
 SEOTitle: Javen的博客 | Javen's Blog
 header-img: img/home-bg.jpg
 email: 914301050@qq.com
@@ -50,7 +51,7 @@ kramdown:
 #disqus_username: _your_disqus_short_name_
 
 # Duoshuo settings
-duoshuo_username: huxblog # todo: moidfy
+duoshuo_username: javenblog # todo: moidfy
 # Share component is depend on Comment so we can NOT use share only.
 duoshuo_share: true                     # set to false if you want to use Comment without Sharing
 
@@ -63,13 +64,13 @@ duoshuo_share: true                     # set to false if you want to use Commen
 ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
 # Google Analytics
 ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: huangxuan.me
+ga_domain: javenleung.com
 
 
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "艾克尔斯的灵魂"
+sidebar-about-description: "君之所向，一往如前"
 sidebar-avatar: /img/avatar-javen.jpeg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 

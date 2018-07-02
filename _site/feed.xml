@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Javen Blog</title>
+    <title>Javen的博客</title>
     <description>Javen的GitHub博客网站</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 25 Jun 2018 21:42:55 +0800</pubDate>
-    <lastBuildDate>Mon, 25 Jun 2018 21:42:55 +0800</lastBuildDate>
+    <pubDate>Mon, 02 Jul 2018 22:18:06 +0800</pubDate>
+    <lastBuildDate>Mon, 02 Jul 2018 22:18:06 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       <item>
