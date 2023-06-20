@@ -1,6 +1,6 @@
 ---
 title: 搞懂script标签的defer和async
-date: 2023-06-21 00:30:48 +0800
+date: 2021-12-18 12:07:51 +0800
 categories: [前端]
 tags: [js]
 ---
