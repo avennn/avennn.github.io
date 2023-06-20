@@ -181,5 +181,10 @@
       "22bd40f4-e945-472a-b25b-f27daeded9be.png",
       "756fef08-3a8a-4fb4-855b-07f1d6b022fa.png"
     ]
+  },
+  "Typescript系列：type vs interface": {
+    "id": "ef820f47-bb78-4d40-b580-44b2effa0777",
+    "postName": "2023-06-13-Typescript系列：type vs interface.md",
+    "images": ["130898a1-500e-4d86-bb9e-930c849c16ca.png"]
   }
 }
