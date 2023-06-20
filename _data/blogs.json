@@ -130,6 +130,16 @@
       "5db93aee-984f-4210-9d72-b4b65776d081.png"
     ]
   },
+  "深入学习React的合成事件": {
+    "id": "1115df64-8c68-4292-b99b-ce726e064cd2",
+    "postName": "2023-04-06-深入学习React的合成事件.md",
+    "images": [
+      "52728229-0d51-4459-bb97-16d7df89b0a9.png",
+      "b9d8e2c3-690b-40aa-a55a-a8555e3e08f0.png",
+      "f8ca0d4b-719f-44ba-bb87-b6a0bfe5962d.png",
+      "0f189cab-2ac6-43fa-9a47-f1a3a6b88b96.png"
+    ]
+  },
   "带你了解JS引擎的性能优化手段：Inline Caches": {
     "id": "df17597e-a1b1-464b-aaa6-3573e80cf9c4",
     "postName": "2023-05-12-带你了解JS引擎的性能优化手段：Inline Caches.md",
