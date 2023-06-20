@@ -186,5 +186,10 @@
     "id": "ef820f47-bb78-4d40-b580-44b2effa0777",
     "postName": "2023-06-13-Typescript系列：type vs interface.md",
     "images": ["130898a1-500e-4d86-bb9e-930c849c16ca.png"]
+  },
+  "Typescript系列：索引访问类型": {
+    "id": "444190b2-f3aa-44d4-b799-f3cff5632d50",
+    "postName": "2023-06-19-Typescript系列：索引访问类型.md",
+    "images": ["adaa1c97-aaa6-41c9-8561-40895eefbb0d.png"]
   }
 }
