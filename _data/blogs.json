@@ -130,6 +130,11 @@
       "5db93aee-984f-4210-9d72-b4b65776d081.png"
     ]
   },
+  "React项目里我们不用担心XSS攻击吗？": {
+    "id": "b7ee4e0d-6a01-42f4-a3ab-cc25c04f12a0",
+    "postName": "2023-04-03-React项目里我们不用担心XSS攻击吗？.md",
+    "images": ["b98ee775-d0b4-45c3-a297-205195c34983.png"]
+  },
   "深入学习React的合成事件": {
     "id": "1115df64-8c68-4292-b99b-ce726e064cd2",
     "postName": "2023-04-06-深入学习React的合成事件.md",
