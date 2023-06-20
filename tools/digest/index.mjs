@@ -96,7 +96,6 @@ await fs.writeFile(destPath, file.toString());
 // 修改博客manifest
 const manifestPath = path.join(getDirName(import.meta.url), '../../_data/blogs.json');
 const manifest = JSON.parse(await fs.readFile(manifestPath, { encoding: 'utf8' }));
-console.log(manifest, typeof manifest);
 Object.assign(manifest, {
   [fileName]: {
     id: uuidv4(),
