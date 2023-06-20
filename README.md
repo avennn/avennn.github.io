@@ -1,3 +1,8 @@
 ## logo 生成
 
 https://realfavicongenerator.net/
+
+## 规范
+
+category 只允许一个，为'前端'|'后端'|'架构'|'职场'|'AI'|'理财'|'生活随笔'等大领域之一。
+tag 允许很多，包括 js，css，html，浏览器，react，vue，微前端，nodejs 等。
