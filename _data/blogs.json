@@ -29,6 +29,11 @@
     "postName": "2021-12-05-Typescript系列：协变、逆变、不变和双向协变.md",
     "images": ["a7824ddf-218e-40cf-883f-562eb85a40a0.png"]
   },
+  "Typescript系列：unknown vs any": {
+    "id": "0e25060f-e22c-4542-a642-be80fb776a7e",
+    "postName": "2021-12-05-Typescript系列：unknown vs any.md",
+    "images": ["1040dc28-1c7d-4183-aa81-0d38a64d8705.png"]
+  },
   "浅谈MessageChannel": {
     "id": "4f7ce684-4edd-4420-83c8-2cde61b4ff63",
     "postName": "2021-11-13-浅谈MessageChannel.md",
