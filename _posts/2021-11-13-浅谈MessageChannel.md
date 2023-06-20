@@ -1,7 +1,6 @@
 ---
 title: 浅谈MessageChannel
 date: 2021-11-13 00:10:00 +0800
-last_modified_at: 2021-11-13 00:10:00 +0800
 categories: [前端]
 tags: [js, 浏览器]
 ---
