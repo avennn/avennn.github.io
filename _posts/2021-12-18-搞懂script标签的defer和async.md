@@ -2,7 +2,7 @@
 title: 搞懂script标签的defer和async
 date: 2021-12-18 12:07:51 +0800
 categories: [前端]
-tags: [js]
+tags: [html]
 ---
 
 ![istockphoto-1181207540-170667a.jpeg](/assets/img/blogs/efa03688-558a-45c6-b8af-85dd2d8411bd.jpeg)
