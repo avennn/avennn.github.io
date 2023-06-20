@@ -129,5 +129,22 @@
       "52b21ab5-8ea2-4ffe-9161-97be3b7717b4.png",
       "5db93aee-984f-4210-9d72-b4b65776d081.png"
     ]
+  },
+  "带你了解JS引擎的性能优化手段：Inline Caches": {
+    "id": "df17597e-a1b1-464b-aaa6-3573e80cf9c4",
+    "postName": "2023-05-12-带你了解JS引擎的性能优化手段：Inline Caches.md",
+    "images": [
+      "d1e80518-8450-4ac4-9a78-7f343e4ec8dd.jpeg",
+      "a57e147e-4346-4ae8-9483-f5cc12a84b12.png",
+      "0934982d-d9f7-4deb-948e-8e89b37be5c7.png",
+      "dfd877f2-1590-48d3-9e0e-88509dee23bb.png",
+      "a7bc112c-e4e0-456a-b708-71abe83553c8.png",
+      "de910291-4050-46f0-9a29-af5439d30763.png",
+      "06f08ea4-ee6f-4639-a8da-cb25e51f9ec9.png",
+      "23e6a53b-d00c-4ed1-b8da-d1e312a58aff.png",
+      "833e9888-d214-427d-815f-6df37b6f5728.png",
+      "6902d7a8-0628-4030-817f-ab28ad6a7667.png",
+      "c833fb7b-f2e0-49fa-8404-251d91c8b9bf.png"
+    ]
   }
 }
