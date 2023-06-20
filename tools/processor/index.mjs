@@ -71,11 +71,7 @@ function insertFrontMatter() {
       const now = dayjs().format('YYYY-MM-DD HH:mm:ss ZZ');
       frontMatter.type = 'yaml';
       frontMatter.value =
-        `title: ${fileName}\n` +
-        `date: ${now}\n` +
-        `last_modified_at: ${now}\n` +
-        `categories: [前端]\n` +
-        `tags: [js]`;
+        `title: ${fileName}\n` + `date: ${now}\n` + `categories: [前端]\n` + `tags: [js]`;
       tree.children.unshift(frontMatter);
     }
   };
