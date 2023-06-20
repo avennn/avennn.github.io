@@ -18,12 +18,12 @@ timezone: Asia/Shanghai
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy # the main title
+title: Avennn的博客 # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the sub-title
+tagline: 用代码构筑世界 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  Avennn的博客
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: "https://avennn.github.io"
@@ -32,7 +32,7 @@ github:
   username: avennn # change to your github username
 
 twitter:
-  username: twitter_username # change to your twitter username
+  username: JavenLeung # change to your twitter username
 
 social:
   # Change to your full name.
@@ -41,8 +41,8 @@ social:
   email: 914301050@qq.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your twitter homepage
-    - https://github.com/username # change to your github homepage
+    - https://twitter.com/JavenLeung # change to your twitter homepage
+    - https://github.com/avennn # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -77,10 +77,10 @@ theme_mode: # [light|dark]
 # will be added to all image (site avatar & posts' images) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-img_cdn: "https://chirpy-img.netlify.app"
+# img_cdn: "https://chirpy-img.netlify.app"
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "/commons/avatar.jpg"
+avatar: "/assets/img/avatar.jpg"
 
 # boolean type, the global switch for TOC in posts.
 toc: true
