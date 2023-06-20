@@ -144,7 +144,7 @@ function f11(x: unknown) {
 }
 ```
 
-5.  `any`可以使用任何操作符和运算符，`unknown`只能用相当判断
+5.  `any`可以使用任何操作符和运算符，`unknown`只能用相等判断
 
 ```typescript
 function f10(x: any) {
