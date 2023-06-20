@@ -77,9 +77,12 @@ function insertFrontMatter() {
   };
 }
 
+const mdPath = process.argv[2];
+if (!mdPath.endsWith('.md')) {
+  process.exit(1);
+}
 const images = [];
-const md = '/Users/liangjianwen/Desktop/workspace/blog/浅谈MessageChannel.md';
-const fileNameWithSuffix = path.basename(md);
+const fileNameWithSuffix = path.basename(mdPath);
 const fileName = fileNameWithSuffix.substring(0, fileNameWithSuffix.indexOf('.'));
 const destName = `${dayjs().format('YYYY-MM-DD')}-${fileName}.md`;
 const destPath = path.join(getDirName(import.meta.url), `../../_posts/${destName}`);
@@ -87,7 +90,7 @@ const file = await remark()
   .use(remarkFrontmatter)
   .use(replaceWithLocalImages)
   .use(insertFrontMatter)
-  .process(await fs.readFile(md));
+  .process(await fs.readFile(mdPath));
 
 await fs.writeFile(destPath, file.toString());
 // 修改博客manifest
