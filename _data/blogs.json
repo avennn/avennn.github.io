@@ -96,5 +96,15 @@
       "f241903f-17ac-4050-a169-2f4256c962d8.gif",
       "257e9d0e-3196-452a-9b2b-ede9e7d61026.png"
     ]
+  },
+  "eslint为什么没有实现max-len的autofix？": {
+    "id": "51f9a03d-cf58-4487-8cc0-565b2d9388ec",
+    "postName": "2022-06-13-eslint为什么没有实现max-len的autofix？.md",
+    "images": [
+      "763950e0-ce35-4381-b2a4-efc178e0e099.png",
+      "d7fd3766-b6bd-49ea-9697-7a1e0903bfe1.png",
+      "18e23030-64a1-4d54-ba59-a9ff803b99d4.png",
+      "efca880a-4cee-49ba-8d65-ffdc183d6d32.png"
+    ]
   }
 }
