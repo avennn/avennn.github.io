@@ -26,3 +26,4 @@ tag 允许很多，包括 js，css，html，浏览器，react，vue，微前端�
 - [ ] google 分析
 - [ ] 图片压缩，尤其是头图
 - [ ] 字体样式加载后页面抖动问题
+- [ ] 头图宽高适应，自动裁剪，参考eslint max-len

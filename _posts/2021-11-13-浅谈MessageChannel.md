@@ -3,9 +3,9 @@ title: 浅谈MessageChannel
 date: 2021-11-13 00:10:00 +0800
 categories: [前端]
 tags: [js, 浏览器]
+image:
+  path: /assets/img/blogs/17ba54f3-c47f-4c88-b6e5-677b5b476deb.png
 ---
-
-![image.png](/assets/img/blogs/17ba54f3-c47f-4c88-b6e5-677b5b476deb.png)
 
 > 阅读Vue和React两大前端框架的源码时都出现了MessageChannel的影子，但是自己却没不了解什么是MessageChannel，它有什么用。于是花了一些时间研究，并尝试把它解释清楚。
 

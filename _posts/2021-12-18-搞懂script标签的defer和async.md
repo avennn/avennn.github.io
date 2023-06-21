@@ -3,9 +3,9 @@ title: 搞懂script标签的defer和async
 date: 2021-12-18 12:07:51 +0800
 categories: [前端]
 tags: [html]
+image:
+  path: /assets/img/blogs/efa03688-558a-45c6-b8af-85dd2d8411bd.jpeg
 ---
-
-![istockphoto-1181207540-170667a.jpeg](/assets/img/blogs/efa03688-558a-45c6-b8af-85dd2d8411bd.jpeg)
 
 > HTML5给`<script>`增加了两个布尔属性，`defer`和`async`，两者在使用上有点像又有点区别，很容易混淆。本文尝试理清之间的关系。
 

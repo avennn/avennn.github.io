@@ -3,9 +3,10 @@ title: VSCode Snippets：提升开发幸福感的小技巧
 date: 2022-03-25 13:15:43 +0800
 categories: [前端]
 tags: [vscode]
+image:
+  path: /assets/img/blogs/2eed42ea-e37b-4c23-ac17-7445b5a45dc3.jpeg
 ---
 
-![evelyn-clement-TjvEfjXIb\_s-unsplash.jpg](/assets/img/blogs/2eed42ea-e37b-4c23-ac17-7445b5a45dc3.jpeg)
 说到前端开发使用的IDE，相信很多同学第一反应会是VSCode。没错，微软出品的VSCode凭借优秀的性能表现和强大的功能，迅速占领了IDE市场的首席。到2021年，全球71%的开发者（不单止前端开发）在使用VSCode。了解我们日常开发中接触最多的工具，充分挖掘VSCode提供的强大能力，会使我们的开发事半功倍。本文就来讲解一下VSCode Snippets是什么以及如何提升我们开发的幸福感。
 
 ## 什么是VSCode Snippets

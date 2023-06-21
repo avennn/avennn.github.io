@@ -3,9 +3,10 @@ title: 原来VSCode CLI这么有用
 date: 2023-02-19 16:25:05 +0800
 categories: [前端]
 tags: [vscode, cli]
+image:
+  path: /assets/img/blogs/630266f6-94d1-4769-95fe-49dae5881c57.jpeg
 ---
 
-![vscode.jpg](/assets/img/blogs/630266f6-94d1-4769-95fe-49dae5881c57.jpeg)
 说到VSCode CLI工具，可能大家比较陌生，因为在日常工作中它不是必须的。但鉴于它有些功能还比较实用，并且最近我在技术上的一些想法刚好可以借助它来实现，所以这篇文章就来聊聊VSCode CLI那些实用的功能。
 
 VSCode CLI的shell命令叫做`code`，后面都会用`code`来指代VSCode CLI工具。
