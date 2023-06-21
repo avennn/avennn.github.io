@@ -10,10 +10,6 @@ category 只允许 1 个，为'前端'|'后端'| 'Linux' | '架构'|'职场'|'AI
 
 tag 允许很多，包括 js，css，html，浏览器，react，vue，微前端，nodejs 等。
 
-## 图片增加 shadow
-
-{: .shadow .rounded-10 w='1212' h='668' }
-
 ## TODO
 
 - [ ] code block 高亮颜色调整

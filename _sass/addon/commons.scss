@@ -30,8 +30,8 @@ html {
 
 body {
   background: var(--main-bg);
-  padding: env(safe-area-inset-top) env(safe-area-inset-right)
-    env(safe-area-inset-bottom) env(safe-area-inset-left);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   font-family: $font-family-base;
@@ -435,7 +435,7 @@ i {
 
       cursor: zoom-in;
       /* 默认增加阴影 */
-      box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,.15) !important;
+      box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15) !important;
     }
 
     /* 添加类可以移除阴影 */
@@ -679,18 +679,6 @@ i {
 }
 
 /* --- Overriding --- */
-
-/* magnific-popup */
-
-figure .mfp-title {
-  text-align: center;
-  padding-right: 0;
-  margin-top: 0.5rem;
-}
-
-.mfp-img {
-  transition: none;
-}
 
 /* mermaid */
 .mermaid {
@@ -1239,9 +1227,7 @@ $btn-mb: 0.5rem;
   }
 
   #core-wrapper {
-    min-height: calc(
-      100vh - #{$topbar-height} - #{$footer-height-mobile}
-    ) !important;
+    min-height: calc(100vh - #{$topbar-height} - #{$footer-height-mobile}) !important;
 
     .post-content {
       > blockquote[class^='prompt-'] {
@@ -1550,9 +1536,7 @@ $btn-mb: 0.5rem;
   }
 
   #search-wrapper {
-    margin-right: calc(
-      #{$main-content-max-width} * 0.25 - #{$search-max-width} - 0.75rem
-    );
+    margin-right: calc(#{$main-content-max-width} * 0.25 - #{$search-max-width} - 0.75rem);
   }
 
   #main,
@@ -1568,9 +1552,7 @@ $btn-mb: 0.5rem;
   }
 
   #back-to-top {
-    right: calc(
-      (100vw - #{$sidebar-width-large} - #{$main-content-max-width}) / 2 + 2rem
-    );
+    right: calc((100vw - #{$sidebar-width-large} - #{$main-content-max-width}) / 2 + 2rem);
   }
 
   #sidebar {

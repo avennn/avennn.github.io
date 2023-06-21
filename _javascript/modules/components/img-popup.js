@@ -1,7 +1,7 @@
 /**
  * Set up image popup
- *
- * See: https://github.com/dimsemenov/Magnific-Popup
+ * 由原来的Magnific-Popup改成viewerjs
+ * See: https://github.com/fengyuanchen/viewerjs
  */
 
 export function imgPopup() {
@@ -9,14 +9,24 @@ export function imgPopup() {
     return;
   }
 
-  $('.popup').magnificPopup({
-    type: 'image',
-    closeOnContentClick: true,
-    showCloseBtn: false,
-    zoom: {
-      enabled: true,
-      duration: 300,
-      easing: 'ease-in-out'
+  $('.popup').on('click', function (e) {
+    e.preventDefault();
+
+    const imgs = $(this).children('img');
+    if (imgs) {
+      const viewer = new Viewer(imgs[0], {
+        title: false,
+        navbar: false,
+        focus: true,
+        toolbar: {
+          zoomIn: 4,
+          zoomOut: 4,
+        },
+        hidden() {
+          viewer.destroy();
+        },
+      });
+      viewer.show();
     }
   });
 }
