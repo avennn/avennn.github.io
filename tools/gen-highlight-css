@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# generate hightlight css with Pygments
-# https://pygments.org/
-pygmentize -S default -f html -a .highlight > ./default.css

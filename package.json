@@ -23,7 +23,9 @@
     "test": "npx stylelint _sass/**/*.scss",
     "fixlint": "npm run test -- --fix",
     "dev": "bundle exec jekyll serve",
-    "digest": "node tools/digest/index.mjs"
+    "digest": "node tools/digest.mjs",
+    "gen:highlight-css": "node tools/genHighlightCSS.mjs",
+    "gen": "npm run gen:highlight-css"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
