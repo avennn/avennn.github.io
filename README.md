@@ -21,7 +21,7 @@ tag 允许很多，包括 js，css，html，浏览器，react，vue，微前端�
 - [ ] markdown lint 或者 commit lint 限制 category 和 tag
 - [ ] image previewer 更换成可以缩放的
 - [ ] 文章授权协议
-- [ ] google 分析
+- [ ] google 分析, Google Analytics 4
 - [ ] 图片压缩，尤其是头图
 - [ ] 字体样式加载后页面抖动问题
 - [ ] 头图宽高适应，自动裁剪，参考eslint max-len
