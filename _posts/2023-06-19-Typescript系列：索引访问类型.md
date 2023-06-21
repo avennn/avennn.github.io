@@ -3,9 +3,10 @@ title: Typescript系列：索引访问类型
 date: 2023-06-19 18:05:39 +0800
 categories: [前端]
 tags: [ts]
+image:
+  path: /assets/img/blogs/adaa1c97-aaa6-41c9-8561-40895eefbb0d.png
 ---
 
-![typescript.png](/assets/img/blogs/adaa1c97-aaa6-41c9-8561-40895eefbb0d.png)
 假设我们有一个用户管理系统，用户的信息通过以下格式存储：
 
 ```typescript

@@ -18,10 +18,11 @@ tag 允许很多，包括 js，css，html，浏览器，react，vue，微前端�
 
 - [ ] code block 高亮颜色调整
 - [ ] 图片上下加空行
-- [ ] react,ts 等系列在首页卡片加缩略图
 - [ ] markdown lint 或者 commit lint 限制 category 和 tag
 - [ ] image previewer 更换成可以缩放的
 - [ ] 关于
 - [ ] 文章授权协议
 - [ ] github 评论
 - [ ] google 分析
+- [ ] 图片压缩，尤其是头图
+- [ ] 字体样式加载后页面抖动问题

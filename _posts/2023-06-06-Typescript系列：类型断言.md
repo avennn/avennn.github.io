@@ -3,9 +3,9 @@ title: Typescript系列：类型断言
 date: 2023-06-06 14:03:58 +0800
 categories: [前端]
 tags: [ts]
+image:
+  path: /assets/img/blogs/3ad7d25d-63b5-4e21-9323-aee6f64e57fd.png
 ---
-
-![typescript.png](/assets/img/blogs/3ad7d25d-63b5-4e21-9323-aee6f64e57fd.png)
 
 ## 语法
 

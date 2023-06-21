@@ -3,9 +3,10 @@ title: Typescript系列：type vs interface
 date: 2023-06-13 16:57:29 +0800
 categories: [前端]
 tags: [ts]
+image:
+  path: /assets/img/blogs/130898a1-500e-4d86-bb9e-930c849c16ca.png
 ---
 
-![typescript.png](/assets/img/blogs/130898a1-500e-4d86-bb9e-930c849c16ca.png)
 相信很多使用ts开发过业务的同学经常将type和interface当作同一个东西替换使用。诚然，两者有一些共同的点，让它们在很多情况下可以替换使用而不会出问题，但实际上它们是完全不同的两个东西。
 
 本文带大家了解type和interface的所有区别，让大家能够快速判断出到底用type还是interface。

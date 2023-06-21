@@ -3,9 +3,9 @@ title: Typescript系列：unknown vs any
 date: 2021-12-05 17:52:31 +0800
 categories: [前端]
 tags: [ts]
+image:
+  path: /assets/img/blogs/1040dc28-1c7d-4183-aa81-0d38a64d8705.png
 ---
-
-![typescript.png](/assets/img/blogs/1040dc28-1c7d-4183-aa81-0d38a64d8705.png)
 
 ## 前言
 
