@@ -3,9 +3,10 @@ title: 带你了解JS引擎的性能优化手段：Inline Caches
 date: 2023-05-12 23:29:49 +0800
 categories: [前端]
 tags: [chrome, v8]
+image:
+  path: /assets/img/blogs/d1e80518-8450-4ac4-9a78-7f343e4ec8dd.jpeg
 ---
 
-![inline-caches.jpg](/assets/img/blogs/d1e80518-8450-4ac4-9a78-7f343e4ec8dd.jpeg)
 最近在学习React的时候无意中了解到JS引擎有一项性能优化手段叫Inline Caches，顿时产生浓厚的兴趣。于是研究了一番，并整理成文。
 
 ## JS执行过程
