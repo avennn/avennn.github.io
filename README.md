@@ -12,7 +12,7 @@ tag 允许很多，包括 js，css，html，浏览器，react，vue，微前端�
 
 ## TODO
 
-- [ ] 图片上下加空行
+- [ ] digest 脚本修改，1.frontmatter 增加 image 2. 图片上下加空行
 - [ ] markdown lint 或者 commit lint 限制 category 和 tag
 - [ ] 文章授权协议
 - [ ] google 分析, Google Analytics 4

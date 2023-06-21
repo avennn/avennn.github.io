@@ -12,7 +12,22 @@
   --highlight-lineno-color: #6c6c6d;
   --inline-code-bg: #272822;
   --code-header-text-color: #6a6a6a;
-  --code-header-muted-color: rgb(60, 60, 60);
+  // --code-header-muted-color: rgb(60, 60, 60);
+  --code-header-muted-red-color: #{scale-color(
+      rgb(237, 108, 96),
+      $lightness: -30%,
+      $saturation: -30%
+    )};
+  --code-header-muted-yellow-color: #{scale-color(
+      rgb(247, 193, 81),
+      $lightness: -30%,
+      $saturation: -30%
+    )};
+  --code-header-muted-green-color: #{scale-color(
+      rgb(100, 200, 86),
+      $lightness: -30%,
+      $saturation: -30%
+    )};
   --code-header-icon-color: rgb(86, 86, 86);
   --clipboard-checked-color: #2bcc2b;
   --filepath-text-color: #bdbdbd;

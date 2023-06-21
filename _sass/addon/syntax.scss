@@ -133,19 +133,6 @@ td.rouge-code {
   }
 }
 
-div[class^='language-'] {
-  @extend %rounded;
-  @extend %code-snippet-bg;
-
-  box-shadow: var(--language-border-color) 0 0 0 1px;
-
-  .post-content > & {
-    @include ml-mr(-1.25rem);
-
-    border-radius: 0;
-  }
-}
-
 /* Hide line numbers for default, console, and terminal code snippets */
 div {
   &.nolineno,
@@ -240,31 +227,50 @@ div {
   }
 }
 
-@media all and (min-width: 576px) {
-  div[class^='language-'] {
-    .post-content > & {
-      @include ml-mr(0);
+div[class^='language-'] {
+  @extend %rounded;
+  @extend %code-snippet-bg;
 
-      border-radius: $base-radius;
+  box-shadow: var(--language-border-color) 0 0 0 1px;
+
+  // 原来移动端独有的样式
+  // .post-content > & {
+  //   @include ml-mr(-1.25rem);
+
+  //   border-radius: 0;
+  // }
+
+  // 下面样式移动端与pc端保持一致，所以放开min-width: 576px的限制
+  .post-content > & {
+    @include ml-mr(0);
+
+    border-radius: $base-radius;
+  }
+
+  .code-header {
+    @include ml-mr(0);
+
+    &::before {
+      $dot-size: 0.75rem;
+      $dot-margin: 0.5rem;
+
+      content: '';
+      display: inline-block;
+      margin-left: 1rem;
+      width: $dot-size;
+      height: $dot-size;
+      border-radius: 50%;
+      background-color: var(--code-header-muted-red-color);
+      box-shadow: ($dot-size + $dot-margin) 0 0 var(--code-header-muted-yellow-color),
+        ($dot-size + $dot-margin) * 2 0 0 var(--code-header-muted-green-color);
     }
+  }
+}
 
-    .code-header {
-      @include ml-mr(0);
-
-      &::before {
-        $dot-size: 0.75rem;
-        $dot-margin: 0.5rem;
-
-        content: '';
-        display: inline-block;
-        margin-left: 1rem;
-        width: $dot-size;
-        height: $dot-size;
-        border-radius: 50%;
-        background-color: var(--code-header-muted-color);
-        box-shadow: ($dot-size + $dot-margin) 0 0 var(--code-header-muted-color),
-          ($dot-size + $dot-margin) * 2 0 0 var(--code-header-muted-color);
-      }
+@media all and (max-width: 575px) {
+  div[class^='language-'] {
+    pre.lineno {
+      display: none;
     }
   }
 }
