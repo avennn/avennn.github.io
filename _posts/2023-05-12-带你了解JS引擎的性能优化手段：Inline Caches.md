@@ -11,7 +11,7 @@ tags: [chrome, v8]
 ## JS执行过程
 
 目前市面上所有的JS引擎包括Chrome的V8、Mozilla的SpiderMonkey、微软的Chakra以及苹果的JSC，它们执行JS代码的过程都是类似的。
-![image.png](/assets/img/blogs/a57e147e-4346-4ae8-9483-f5cc12a84b12.png)
+![image.png](/assets/img/blogs/a57e147e-4346-4ae8-9483-f5cc12a84b12.png){: .no-shadow}
 首先，JS源码经过解析器（`Parser`）的词法分析和语法分析，生成抽象语法树（`AST`）。然后，解释器（`Interpreter`）将AST转成字节码并执行。
 
 解释器生成字节码的速度很快，但字节码的执行效率没有机器码高。
@@ -27,7 +27,7 @@ tags: [chrome, v8]
 ## JS对象的表示
 
 JS对象是以字典的形式存在，每一个字符串key映射到对应的value。但更底层一点，应该是映射到对应的property属性。回想一下，我们可以通过`Object.defineProperty`修改对象属性的隐藏属性：`value`、`writable`、`enumerable`和`configurable`。
-![image.png](/assets/img/blogs/0934982d-d9f7-4deb-948e-8e89b37be5c7.png)
+![image.png](/assets/img/blogs/0934982d-d9f7-4deb-948e-8e89b37be5c7.png){: .no-shadow}
 上面的对象`a`，它的两个属性`x`、`y`分别指向对应的property属性，value分别为1和2。
 
 当我们需要创建大量相似的对象时，比如通过下面的构造函数`Person`出3个实例：
@@ -50,12 +50,12 @@ const c = new Person('Lucy', 3);
 在学术论文中一般叫`Hidden Classes`，在V8里叫`Maps`（跟ES6里的Map不是一个概念）。这里用`Shapes`表示会更容易理解。
 
 前面通过构造函数Person创建的3个对象有相同的属性结构，可以说它们有相同的Shape。每个对象只保存它的values，然后指向共同的Shape。Shape里每个key都关联了property属性的信息和一个偏移量，通过这个偏移量可以找到`JSObject`里存储的value值。
-![image.png](/assets/img/blogs/dfd877f2-1590-48d3-9e0e-88509dee23bb.png)
+![image.png](/assets/img/blogs/dfd877f2-1590-48d3-9e0e-88509dee23bb.png){: .no-shadow}
 
 ### Shape转变链
 
 对象动态添加属性会形成Shape转变链。比如下图：
-![image.png](/assets/img/blogs/a7bc112c-e4e0-456a-b708-71abe83553c8.png)
+![image.png](/assets/img/blogs/a7bc112c-e4e0-456a-b708-71abe83553c8.png){: .no-shadow}
 对象`a`一开始指向一个空Shape，添加`name`属性后，空Shape转变成含有`name`的Shape，再添加`age`属性后，Shape又转变成含有`age`的Shape。
 
 这里有个问题，就是Shape转变之后，对象`a`指向最后一个Shape，如果现在要访问`a.name`，如何找到对应的偏移量和value呢？这个问题后面会解答。
@@ -63,11 +63,11 @@ const c = new Person('Lucy', 3);
 属性不同或者属性添加的顺序不同都会形成不同的Shape转变链。
 
 属性不同时的Shape转变链举例：
-![image.png](/assets/img/blogs/de910291-4050-46f0-9a29-af5439d30763.png)
-![image.png](/assets/img/blogs/06f08ea4-ee6f-4639-a8da-cb25e51f9ec9.png)
+![image.png](/assets/img/blogs/de910291-4050-46f0-9a29-af5439d30763.png){: .no-shadow}
+![image.png](/assets/img/blogs/06f08ea4-ee6f-4639-a8da-cb25e51f9ec9.png){: .no-shadow}
 属性添加的顺序不同时的Shape转变链举例：
-![image.png](/assets/img/blogs/23e6a53b-d00c-4ed1-b8da-d1e312a58aff.png)
-![image.png](/assets/img/blogs/833e9888-d214-427d-815f-6df37b6f5728.png)
+![image.png](/assets/img/blogs/23e6a53b-d00c-4ed1-b8da-d1e312a58aff.png){: .no-shadow}
+![image.png](/assets/img/blogs/833e9888-d214-427d-815f-6df37b6f5728.png){: .no-shadow}
 可以看到，即使`a`、`b`两个对象最终都有相同的属性值，但它们的Shape转变链是不一样的。
 
 ### 属性访问
@@ -75,9 +75,9 @@ const c = new Person('Lucy', 3);
 前面遗留了一个问题，就是形成Shape转变链之后，对象指向了最后一个Shape，如果需要访问其他对象属性，该如何操作？
 
 一个办法是像下图这样从转变链的反方向去查找：
-![image.png](/assets/img/blogs/6902d7a8-0628-4030-817f-ab28ad6a7667.png)
+![image.png](/assets/img/blogs/6902d7a8-0628-4030-817f-ab28ad6a7667.png){: .no-shadow}
 但这样的话，属性访问的时间将会是O(n)复杂度。所以JS引擎通过一个叫`ShapeTable`的字典，将属性key映射到对应的Shape上，这样属性访问时间就是常数级别。
-![image.png](/assets/img/blogs/c833fb7b-f2e0-49fa-8404-251d91c8b9bf.png)
+![image.png](/assets/img/blogs/c833fb7b-f2e0-49fa-8404-251d91c8b9bf.png){: .no-shadow}
 
 ### Shapes的作用
 

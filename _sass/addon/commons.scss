@@ -434,6 +434,13 @@ i {
       @include mt-mb(0.5rem);
 
       cursor: zoom-in;
+      /* 默认增加阴影 */
+      box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,.15) !important;
+    }
+
+    /* 添加类可以移除阴影 */
+    &.no-shadow {
+      box-shadow: none !important;
     }
 
     &:not(.img-link) {
