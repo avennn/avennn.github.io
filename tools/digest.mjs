@@ -62,7 +62,26 @@ function replaceWithLocalImages() {
 }
 
 function insertFrontMatter() {
+  function removeCoverImage(tree) {
+    // 递归找第一个元素，如果是image类型，则为封面图
+    let parent;
+    let node = tree;
+    while (node.children && node.children.length) {
+      parent = node;
+      node = node.children[0];
+    }
+    if (node.type === 'image') {
+      const url = node.url;
+      parent.children.shift();
+      return url;
+    }
+  }
+
+  const space = ' ';
+  const level2Space = ['', space.repeat(2), space.repeat(4)];
   return (tree) => {
+    const coverUrl = removeCoverImage(tree);
+
     let hasFrontMatter = false;
     visit(tree, 'yaml', (node) => {
       if (node) {
@@ -74,7 +93,10 @@ function insertFrontMatter() {
       const now = dayjs().format('YYYY-MM-DD HH:mm:ss ZZ');
       frontMatter.type = 'yaml';
       frontMatter.value =
-        `title: ${fileName}\n` + `date: ${now}\n` + `categories: [前端]\n` + `tags: [js]`;
+        `title: ${fileName}` + `\ndate: ${now}` + `\ncategories: [前端]` + `\ntags: [js]`;
+      if (coverUrl) {
+        frontMatter.value += `\nimage:\n${level2Space[1]}path: ${coverUrl}`;
+      }
       tree.children.unshift(frontMatter);
     }
   };
@@ -104,12 +126,14 @@ if (!blogPath || !blogPath.endsWith('.md')) {
   console.error('You must select a markdown file.');
   process.exit(1);
 }
+
 console.log('Digesting blog...');
 const images = [];
 const fileNameWithSuffix = path.basename(blogPath);
 const fileName = fileNameWithSuffix.substring(0, fileNameWithSuffix.indexOf('.'));
 const destName = `${dayjs().format('YYYY-MM-DD')}-${fileName}.md`;
 const destPath = path.join(getDirName(import.meta.url), `../_posts/${destName}`);
+
 const file = await remark()
   .use(remarkFrontmatter)
   .use(replaceWithLocalImages)
@@ -117,6 +141,7 @@ const file = await remark()
   .process(await fs.readFile(blogPath));
 
 await fs.writeFile(destPath, file.toString());
+
 // 修改博客manifest
 const manifestPath = path.join(getDirName(import.meta.url), '../_data/blogs.json');
 const manifest = JSON.parse(await fs.readFile(manifestPath, { encoding: 'utf8' }));
