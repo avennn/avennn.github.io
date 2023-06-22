@@ -92,5 +92,5 @@ export default {
     },
   },
   customRules: [restrictBlogFields],
-  // globs: '_posts/**/*.md',
+  globs: ['_posts/**/*.md'],
 };
