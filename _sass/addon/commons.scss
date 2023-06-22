@@ -396,7 +396,7 @@ i {
 
   p {
     > img[data-src],
-    ~ div.popup {
+    > span.popup {
       &:not(.normal):not(.left):not(.right) {
         @include align-center;
       }
@@ -427,7 +427,7 @@ i {
   margin-top: 2rem;
   overflow-wrap: break-word;
 
-  div {
+  span {
     &.popup {
       @extend %no-cursor;
       @extend %img-caption;
@@ -452,6 +452,7 @@ i {
     //   @include mt-mb(0.5rem);
 
     //   cursor: zoom-in;
+
     //   /* 默认增加阴影 */
     //   box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15) !important;
     // }
