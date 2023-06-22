@@ -23,6 +23,8 @@
     }
 
     .preview-img {
+      overflow: hidden;
+      aspect-ratio: 40 / 21;
       height: 10rem;
 
       @extend %img-radius;
