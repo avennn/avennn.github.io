@@ -21,7 +21,9 @@
     "build": "NODE_ENV=production npx rollup -c --bundleConfigAsCjs",
     "prewatch": "npx rimraf assets/js/dist",
     "watch": "npx rollup -c --bundleConfigAsCjs -w",
-    "lint": "npx stylelint _sass/**/*.scss",
+    "lint": "npm run lint:scss && npm run lint:md",
+    "lint:scss": "npx stylelint _sass/**/*.scss",
+    "lint:md": "npx markdownlint-cli2 _sass/**/*.scss",
     "fixlint": "npm run lint -- --fix",
     "test": "./tools/test",
     "dev": "bundle exec jekyll serve",
@@ -59,10 +61,10 @@
   },
   "lint-staged": {
     "_sass/**/*.scss": [
-      "stylelint --fix"
+      "npx stylelint --fix"
     ],
     "_posts/**/*.md": [
-      "markdownlint-cli2"
+      "npx markdownlint-cli2"
     ]
   }
 }
