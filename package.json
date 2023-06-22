@@ -61,7 +61,7 @@
     "_sass/**/*.scss": [
       "stylelint --fix"
     ],
-    "_post/**/*.md": [
+    "_posts/**/*.md": [
       "markdownlint-cli2"
     ]
   }
