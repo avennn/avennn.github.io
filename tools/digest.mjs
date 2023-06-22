@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { URL, fileURLToPath } from 'node:url';
+import os from 'node:os';
 import { remark } from 'remark';
 import { v4 as uuidv4 } from 'uuid';
 import { visit } from 'unist-util-visit';
@@ -9,6 +10,8 @@ import advancedFormat from 'dayjs/plugin/advancedFormat.js';
 import timezone from 'dayjs/plugin/timezone.js';
 import fetch from 'node-fetch';
 import remarkFrontmatter from 'remark-frontmatter';
+import inquirer from 'inquirer';
+import inquirerFileTreeSelection from 'inquirer-file-tree-selection-prompt';
 
 dayjs.extend(timezone);
 dayjs.extend(advancedFormat);
@@ -37,7 +40,7 @@ function replaceWithLocalImages() {
     const imageName = `${id}.${ext}`;
     const localUrl = `/assets/img/blogs/${imageName}`;
     await fs.writeFile(
-      path.join(getDirName(import.meta.url), `../../${localUrl}`),
+      path.join(getDirName(import.meta.url), `../${localUrl}`),
       Buffer.from(arrayBuffer)
     );
     return { imageName, localUrl };
@@ -77,24 +80,45 @@ function insertFrontMatter() {
   };
 }
 
-const mdPath = process.argv[2];
-if (!mdPath.endsWith('.md')) {
+const [, , ...blogSegments] = process.argv;
+let blogPath;
+if (!blogSegments.length) {
+  // inquirer prompt file select
+  inquirer.registerPrompt('file-tree-selection', inquirerFileTreeSelection);
+
+  const { md } = await inquirer.prompt({
+    type: 'file-tree-selection',
+    name: 'md',
+    message: 'Select a markdown file',
+    root: os.homedir(),
+    validate: (item) => {
+      const name = item.split(path.sep).pop();
+      return !name.startsWith('.') && name.endsWith('.md');
+    },
+  });
+  blogPath = md;
+} else {
+  blogPath = blogSegments.join(' ');
+}
+if (!blogPath || !blogPath.endsWith('.md')) {
+  console.error('You must select a markdown file.');
   process.exit(1);
 }
+console.log('Digesting blog...');
 const images = [];
-const fileNameWithSuffix = path.basename(mdPath);
+const fileNameWithSuffix = path.basename(blogPath);
 const fileName = fileNameWithSuffix.substring(0, fileNameWithSuffix.indexOf('.'));
 const destName = `${dayjs().format('YYYY-MM-DD')}-${fileName}.md`;
-const destPath = path.join(getDirName(import.meta.url), `../../_posts/${destName}`);
+const destPath = path.join(getDirName(import.meta.url), `../_posts/${destName}`);
 const file = await remark()
   .use(remarkFrontmatter)
   .use(replaceWithLocalImages)
   .use(insertFrontMatter)
-  .process(await fs.readFile(mdPath));
+  .process(await fs.readFile(blogPath));
 
 await fs.writeFile(destPath, file.toString());
 // 修改博客manifest
-const manifestPath = path.join(getDirName(import.meta.url), '../../_data/blogs.json');
+const manifestPath = path.join(getDirName(import.meta.url), '../_data/blogs.json');
 const manifest = JSON.parse(await fs.readFile(manifestPath, { encoding: 'utf8' }));
 Object.assign(manifest, {
   [fileName]: {
