@@ -61,6 +61,7 @@ const restrictBlogFields = {
 let no = 1;
 const allBuiltInRules = {};
 while (no < 54) {
+  // disable all built-in rules
   allBuiltInRules[no > 9 ? `MD0${no}` : `MD00${no}`] = false;
   no++;
 }
@@ -91,5 +92,5 @@ export default {
     },
   },
   customRules: [restrictBlogFields],
-  globs: '_posts/**/*.md',
+  // globs: '_posts/**/*.md',
 };
