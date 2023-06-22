@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/avennn/avennn.github.io/",
   "scripts": {
+    "prepare": "husky install",
     "prebuild": "npx rimraf assets/js/dist",
     "build": "NODE_ENV=production npx rollup -c --bundleConfigAsCjs",
     "prewatch": "npx rimraf assets/js/dist",
@@ -52,5 +53,10 @@
     "stylelint-config-standard-scss": "^7.0.1",
     "unist-util-visit": "^4.1.2",
     "uuid": "^9.0.0"
+  },
+  "lint-staged": {
+    "_sass/**/*.scss": [
+      "stylelint --fix"
+    ]
   }
 }
