@@ -12,7 +12,6 @@ tag 允许很多，包括 js，css，html，浏览器，react，vue，微前端�
 
 ## TODO
 
-- [ ] digest 脚本修改，1.frontmatter 增加 image
 - [ ] markdown lint 或者 commit lint 限制 category 和 tag
 - [ ] 图片压缩，尤其是头图
 - [ ] 头图宽高适应，自动裁剪，参考 eslint max-len
