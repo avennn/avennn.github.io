@@ -434,6 +434,7 @@ i {
       @include mt-mb(0.5rem);
 
       cursor: zoom-in;
+
       /* 默认增加阴影 */
       box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15) !important;
     }
@@ -1538,6 +1539,7 @@ $btn-mb: 0.5rem;
   #back-to-top {
     right: calc((100vw - #{$sidebar-width} - 1140px) / 2 + 3rem);
   }
+
   /* Overwrite bootstrap _utilities.scss */
   .px-xxl-5 {
     padding-right: 3rem !important;

@@ -4,6 +4,8 @@
  * You can fallback to dark-syntax.default.scss whenever having a problem.
  */
 
+@use 'sass:color';
+
 @mixin dark-syntax {
   /* --- custom light colors --- */
   --language-border-color: rgba(84, 83, 83, 0.27);
@@ -12,21 +14,22 @@
   --highlight-lineno-color: #6c6c6d;
   --inline-code-bg: #272822;
   --code-header-text-color: #6a6a6a;
+
   // --code-header-muted-color: rgb(60, 60, 60);
-  --code-header-muted-red-color: #{scale-color(
+  --code-header-muted-red-color: #{color.scale(
       rgb(237, 108, 96),
-      $lightness: -30%,
-      $saturation: -30%
+      $lightness: - 30%,
+      $saturation: - 30%
     )};
-  --code-header-muted-yellow-color: #{scale-color(
+  --code-header-muted-yellow-color: #{color.scale(
       rgb(247, 193, 81),
-      $lightness: -30%,
-      $saturation: -30%
+      $lightness: - 30%,
+      $saturation: - 30%
     )};
-  --code-header-muted-green-color: #{scale-color(
+  --code-header-muted-green-color: #{color.scale(
       rgb(100, 200, 86),
-      $lightness: -30%,
-      $saturation: -30%
+      $lightness: - 30%,
+      $saturation: - 30%
     )};
   --code-header-icon-color: rgb(86, 86, 86);
   --clipboard-checked-color: #2bcc2b;
@@ -35,6 +38,7 @@
   .highlight .hll {
     background-color: #ffffcc;
   }
+
   // .highlight {
   //   background: #282c34;
   //   color: #abb2bf;
