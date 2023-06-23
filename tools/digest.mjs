@@ -94,7 +94,11 @@ function insertFrontMatter() {
       const now = dayjs().format('YYYY-MM-DD HH:mm:ss ZZ');
       frontMatter.type = 'yaml';
       frontMatter.value =
-        `title: ${fileName}` + `\ndate: ${now}` + `\ncategories: [前端]` + `\ntags: [js]`;
+        `title: ${fileName}` +
+        `\ndate: ${now}` +
+        `\ncategories: [前端]` +
+        `\ntags: [js]` +
+        `\npermalink: /posts/${blogId}`;
       if (coverUrl) {
         frontMatter.value += `\nimage:\n${level2Space[1]}path: ${coverUrl}`;
       }
@@ -103,10 +107,11 @@ function insertFrontMatter() {
   };
 }
 
+// 整理入参，判断是否传入博客md文件
 const [, , ...blogSegments] = process.argv;
 let blogPath;
 if (!blogSegments.length) {
-  // inquirer prompt file select
+  // Inquirer.js prompt file select
   inquirer.registerPrompt('file-tree-selection', inquirerFileTreeSelection);
 
   const { md } = await inquirer.prompt({
@@ -129,12 +134,14 @@ if (!blogPath || !blogPath.endsWith('.md')) {
 }
 
 console.log('Digesting blog...');
+const blogId = uuidv4();
 const images = [];
 const fileNameWithSuffix = path.basename(blogPath);
 const fileName = fileNameWithSuffix.substring(0, fileNameWithSuffix.indexOf('.'));
 const destName = `${dayjs().format('YYYY-MM-DD')}-${fileName}.md`;
 const destPath = path.join(getDirName(import.meta.url), `../_posts/${destName}`);
 
+// 下载图片 + 输出md到_posts
 const file = await remark()
   .use(remarkFrontmatter)
   .use(replaceWithLocalImages)
@@ -143,12 +150,12 @@ const file = await remark()
 
 await fs.writeFile(destPath, file.toString());
 
-// 修改博客manifest
+// 修改blogs.json
 const manifestPath = path.join(getDirName(import.meta.url), '../_data/blogs.json');
 const manifest = JSON.parse(await fs.readFile(manifestPath, { encoding: 'utf8' }));
 Object.assign(manifest, {
   [fileName]: {
-    id: uuidv4(),
+    id: blogId,
     postName: destName,
     images,
   },

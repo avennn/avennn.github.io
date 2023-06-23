@@ -3,6 +3,7 @@ title: Typescript系列：索引访问类型
 date: 2023-06-19 18:05:39 +0800
 categories: [前端]
 tags: [ts]
+permalink: /posts/444190b2-f3aa-44d4-b799-f3cff5632d50/
 image:
   path: /assets/img/blogs/adaa1c97-aaa6-41c9-8561-40895eefbb0d.png
 ---
