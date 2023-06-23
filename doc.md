@@ -6,7 +6,6 @@ https://realfavicongenerator.net/
 
 ## TODO
 
-- [ ] 安全问题：jekyll ignore files生成
 - [ ] 图片压缩，尤其是头图，tinypng?
 - [ ] 头图尺寸裁剪成合理的比例
 - [ ] blogs.json，md，图片临时目录，原子化处理

@@ -183,12 +183,15 @@ exclude:
   - '*.gem'
   - '*.gemspec'
   - tools
-  - README.md
+  - README*.md
+  - doc.md
   - CHANGELOG.md
   - LICENSE
   - rollup.config.js
+  - commitlint.config.js
   - node_modules
   - package*.json
+  - yarn.lock
 
 jekyll-archives:
   enabled: [categories, tags]
