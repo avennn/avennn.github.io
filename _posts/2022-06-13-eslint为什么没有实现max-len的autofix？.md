@@ -3,6 +3,7 @@ title: eslint为什么没有实现max-len的autofix？
 date: 2022-06-13 11:36:19 +0800
 categories: [前端]
 tags: [eslint]
+permalink: /posts/51f9a03d-cf58-4487-8cc0-565b2d9388ec/
 image:
   path: /assets/img/blogs/763950e0-ce35-4381-b2a4-efc178e0e099.png
 ---

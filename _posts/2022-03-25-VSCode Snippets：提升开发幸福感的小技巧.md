@@ -3,6 +3,7 @@ title: VSCode Snippets：提升开发幸福感的小技巧
 date: 2022-03-25 13:15:43 +0800
 categories: [前端]
 tags: [vscode]
+permalink: /posts/16322c32-88f1-4026-8596-5af9dbd62f63/
 image:
   path: /assets/img/blogs/2eed42ea-e37b-4c23-ac17-7445b5a45dc3.jpeg
 ---

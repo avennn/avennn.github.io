@@ -3,6 +3,7 @@ title: 原来VSCode CLI这么有用
 date: 2023-02-19 16:25:05 +0800
 categories: [前端]
 tags: [vscode, cli]
+permalink: /posts/2c2d7120-fdee-4aea-a832-7ddbd976fcd4/
 image:
   path: /assets/img/blogs/630266f6-94d1-4769-95fe-49dae5881c57.jpeg
 ---

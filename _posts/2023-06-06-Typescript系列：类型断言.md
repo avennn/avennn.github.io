@@ -3,6 +3,7 @@ title: Typescript系列：类型断言
 date: 2023-06-06 14:03:58 +0800
 categories: [前端]
 tags: [ts]
+permalink: /posts/1705e8a9-ebf7-4223-b45a-37328848b7ce/
 image:
   path: /assets/img/blogs/3ad7d25d-63b5-4e21-9323-aee6f64e57fd.png
 ---

@@ -3,6 +3,7 @@ title: Typescript系列：协变、逆变、不变和双向协变
 date: 2021-12-05 13:47:55 +0800
 categories: [前端]
 tags: [ts]
+permalink: /posts/d9c8a9be-6ebd-4d56-bd5f-04cad118f6bb/
 image:
   path: /assets/img/blogs/a7824ddf-218e-40cf-883f-562eb85a40a0.png
 ---

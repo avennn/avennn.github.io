@@ -1,31 +1,30 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { URL, fileURLToPath } from 'node:url';
+import { URL } from 'node:url';
 import os from 'node:os';
 import { remark } from 'remark';
-import { v4 as uuidv4 } from 'uuid';
+import remarkFrontmatter from 'remark-frontmatter';
 import { visit } from 'unist-util-visit';
+import { v4 as uuidv4 } from 'uuid';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat.js';
 import timezone from 'dayjs/plugin/timezone.js';
 import fetch from 'node-fetch';
-import remarkFrontmatter from 'remark-frontmatter';
 import inquirer from 'inquirer';
 import inquirerFileTreeSelection from 'inquirer-file-tree-selection-prompt';
 import prettier from 'prettier';
+import {
+  blogManifestPath,
+  blogOutputDir,
+  blogImgOutputDir,
+  blogImgRelativeUrl,
+  prettierConfigPath,
+  blogRelativePermalLink,
+} from './config.mjs';
 
 dayjs.extend(timezone);
 dayjs.extend(advancedFormat);
 dayjs.tz.setDefault('Asia/Shanghai');
-
-function getDirName(p) {
-  let file = p;
-  if (p.includes('://')) {
-    const url = new URL(p);
-    file = url.protocol === 'file:' ? fileURLToPath(p) : url.href;
-  }
-  return path.dirname(file);
-}
 
 function replaceWithLocalImages() {
   function isYuQueUrl(url) {
@@ -39,12 +38,8 @@ function replaceWithLocalImages() {
     const { pathname } = new URL(url);
     const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
     const imageName = `${id}.${ext}`;
-    const localUrl = `/assets/img/blogs/${imageName}`;
-    await fs.writeFile(
-      path.join(getDirName(import.meta.url), `../${localUrl}`),
-      Buffer.from(arrayBuffer)
-    );
-    return { imageName, localUrl };
+    await fs.writeFile(path.join(blogImgOutputDir, imageName), Buffer.from(arrayBuffer));
+    return { imageName, localUrl: `${blogImgRelativeUrl}/${imageName}` };
   }
 
   return async (tree) => {
@@ -80,6 +75,7 @@ function insertFrontMatter() {
 
   const space = ' ';
   const level2Space = ['', space.repeat(2), space.repeat(4)];
+
   return (tree) => {
     const coverUrl = removeCoverImage(tree);
 
@@ -98,7 +94,7 @@ function insertFrontMatter() {
         `\ndate: ${now}` +
         `\ncategories: [前端]` +
         `\ntags: [js]` +
-        `\npermalink: /posts/${blogId}/`;
+        `\npermalink: ${blogRelativePermalLink}/${blogId}/`;
       if (coverUrl) {
         frontMatter.value += `\nimage:\n${level2Space[1]}path: ${coverUrl}`;
       }
@@ -139,7 +135,7 @@ const images = [];
 const fileNameWithSuffix = path.basename(blogPath);
 const fileName = fileNameWithSuffix.substring(0, fileNameWithSuffix.indexOf('.'));
 const destName = `${dayjs().format('YYYY-MM-DD')}-${fileName}.md`;
-const destPath = path.join(getDirName(import.meta.url), `../_posts/${destName}`);
+const destPath = path.join(blogOutputDir, destName);
 
 // 下载图片 + 输出md到_posts
 const file = await remark()
@@ -151,8 +147,7 @@ const file = await remark()
 await fs.writeFile(destPath, file.toString());
 
 // 修改blogs.json
-const manifestPath = path.join(getDirName(import.meta.url), '../_data/blogs.json');
-const manifest = JSON.parse(await fs.readFile(manifestPath, { encoding: 'utf8' }));
+const manifest = JSON.parse(await fs.readFile(blogManifestPath, { encoding: 'utf8' }));
 Object.assign(manifest, {
   [fileName]: {
     id: blogId,
@@ -160,10 +155,8 @@ Object.assign(manifest, {
     images,
   },
 });
-const prettierOpts = await prettier.resolveConfig(
-  path.join(getDirName(import.meta.url), '../.prettierrc')
-);
+const prettierOpts = await prettier.resolveConfig(prettierConfigPath);
 fs.writeFile(
-  manifestPath,
+  blogManifestPath,
   prettier.format(JSON.stringify(manifest), { ...prettierOpts, parser: 'json' })
 );

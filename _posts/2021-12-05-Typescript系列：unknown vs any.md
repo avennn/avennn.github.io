@@ -3,6 +3,7 @@ title: Typescript系列：unknown vs any
 date: 2021-12-05 17:52:31 +0800
 categories: [前端]
 tags: [ts]
+permalink: /posts/0e25060f-e22c-4542-a642-be80fb776a7e/
 image:
   path: /assets/img/blogs/1040dc28-1c7d-4183-aa81-0d38a64d8705.png
 ---

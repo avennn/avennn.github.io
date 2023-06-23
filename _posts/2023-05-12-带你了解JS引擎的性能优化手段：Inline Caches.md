@@ -3,6 +3,7 @@ title: 带你了解JS引擎的性能优化手段：Inline Caches
 date: 2023-05-12 23:29:49 +0800
 categories: [前端]
 tags: [chrome, v8]
+permalink: /posts/df17597e-a1b1-464b-aaa6-3573e80cf9c4/
 image:
   path: /assets/img/blogs/d1e80518-8450-4ac4-9a78-7f343e4ec8dd.jpeg
 ---

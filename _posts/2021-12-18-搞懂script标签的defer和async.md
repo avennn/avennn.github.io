@@ -3,6 +3,7 @@ title: 搞懂script标签的defer和async
 date: 2021-12-18 12:07:51 +0800
 categories: [前端]
 tags: [html]
+permalink: /posts/2ef0e640-df97-4cc1-9c7e-39c804f917fd/
 image:
   path: /assets/img/blogs/efa03688-558a-45c6-b8af-85dd2d8411bd.jpeg
 ---

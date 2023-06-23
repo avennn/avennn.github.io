@@ -28,6 +28,7 @@
     "test": "./tools/test",
     "dev": "bundle exec jekyll serve",
     "digest": "node tools/digest.mjs",
+    "fixdata": "node tools/batchFixData.mjs",
     "gen:highlight-css": "node tools/genHighlightCSS.mjs",
     "gen": "npm run gen:highlight-css"
   },

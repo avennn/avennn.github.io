@@ -3,6 +3,7 @@ title: 浅谈MessageChannel
 date: 2021-11-13 00:10:00 +0800
 categories: [前端]
 tags: [js, 浏览器]
+permalink: /posts/4f7ce684-4edd-4420-83c8-2cde61b4ff63/
 image:
   path: /assets/img/blogs/17ba54f3-c47f-4c88-b6e5-677b5b476deb.png
 ---

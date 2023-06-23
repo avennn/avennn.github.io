@@ -3,6 +3,7 @@ title: 功能强大、值得关注的CSS Houdini API
 date: 2022-05-26 17:19:00 +0800
 categories: [前端]
 tags: [css]
+permalink: /posts/7b726587-e781-47a4-8e08-cfb2c755941b/
 image:
   path: /assets/img/blogs/1d0d0ab1-33f2-4be4-94ff-d3d3f108580e.jpeg
 ---

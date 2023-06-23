@@ -3,6 +3,7 @@ title: Typescript系列：type vs interface
 date: 2023-06-13 16:57:29 +0800
 categories: [前端]
 tags: [ts]
+permalink: /posts/ef820f47-bb78-4d40-b580-44b2effa0777/
 image:
   path: /assets/img/blogs/130898a1-500e-4d86-bb9e-930c849c16ca.png
 ---
