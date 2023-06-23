@@ -2,6 +2,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { URL, fileURLToPath } from 'node:url';
+import prettier from 'prettier';
 
 function getDirName(p) {
   let file = p;
@@ -22,6 +23,14 @@ export async function readBlogManifest() {
 
 export function createBlogPermalinkPath(id) {
   return `${blogRelativePermalLink}/${id}/`;
+}
+
+export async function prettierFormat(toPath, content, parser) {
+  const prettierOpts = await prettier.resolveConfig(prettierConfigPath);
+  await fs.writeFile(
+    toPath,
+    prettier.format(content, Object.assign({}, prettierOpts, parser ? { parser } : {}))
+  );
 }
 
 export const blogManifestPath = resolve('../_data/blogs.json');

@@ -5,7 +5,6 @@ import remarkFrontmatter from 'remark-frontmatter';
 import { visit } from 'unist-util-visit';
 import { is } from 'unist-util-is';
 import dayjs from 'dayjs';
-import prettier from 'prettier';
 import {
   blogManifestPath,
   blogRelativePermalLink,
@@ -14,7 +13,7 @@ import {
   readmeCNPath,
   readBlogManifest,
   createBlogPermalinkPath,
-  prettierConfigPath,
+  prettierFormat,
 } from './common.mjs';
 
 function insertBlogList(lang = 'en') {
@@ -110,7 +109,7 @@ export async function syncBlogList2Readme() {
       .use(insertBlogList, lang)
       .process(await fs.readFile(mdPath));
 
-    await fs.writeFile(mdPath, md.toString());
+    await prettierFormat(mdPath, md.toString(), 'markdown');
   }
 }
 
@@ -162,11 +161,7 @@ function extractBlogDate(id) {
     const manifest = await readBlogManifest();
     const dataItem = Object.values(manifest).find((item) => item.id === id);
     dataItem.date = date;
-    const prettierOpts = await prettier.resolveConfig(prettierConfigPath);
-    await fs.writeFile(
-      blogManifestPath,
-      prettier.format(JSON.stringify(manifest), { ...prettierOpts, parser: 'json' })
-    );
+    await prettierFormat(blogManifestPath, JSON.stringify(manifest), 'json');
   };
 }
 

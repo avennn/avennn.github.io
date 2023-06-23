@@ -13,15 +13,14 @@ import timezone from 'dayjs/plugin/timezone.js';
 import fetch from 'node-fetch';
 import inquirer from 'inquirer';
 import inquirerFileTreeSelection from 'inquirer-file-tree-selection-prompt';
-import prettier from 'prettier';
 import {
   blogManifestPath,
   blogOutputDir,
   blogImgOutputDir,
   blogImgRelativeUrl,
-  prettierConfigPath,
   readBlogManifest,
   createBlogPermalinkPath,
+  prettierFormat,
 } from './common.mjs';
 import { syncBlogList2Readme } from './syncData.mjs';
 
@@ -161,11 +160,7 @@ Object.assign(manifest, {
     images,
   },
 });
-const prettierOpts = await prettier.resolveConfig(prettierConfigPath);
-await fs.writeFile(
-  blogManifestPath,
-  prettier.format(JSON.stringify(manifest), { ...prettierOpts, parser: 'json' })
-);
+await prettierFormat(blogManifestPath, JSON.stringify(manifest), 'json');
 
 // 自动修改README.md
 await syncBlogList2Readme();
