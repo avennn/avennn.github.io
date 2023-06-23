@@ -21,8 +21,8 @@ import {
   readBlogManifest,
   createBlogPermalinkPath,
   prettierFormat,
+  syncBlogList2Readme,
 } from './common.mjs';
-import { syncBlogList2Readme } from './syncData.mjs';
 
 dayjs.extend(timezone);
 dayjs.extend(advancedFormat);

@@ -3,115 +3,14 @@ import path from 'node:path';
 import { remark } from 'remark';
 import remarkFrontmatter from 'remark-frontmatter';
 import { visit } from 'unist-util-visit';
-import { is } from 'unist-util-is';
-import dayjs from 'dayjs';
 import {
   blogManifestPath,
   blogRelativePermalLink,
   blogOutputDir,
-  readmePath,
-  readmeCNPath,
   readBlogManifest,
-  createBlogPermalinkPath,
   prettierFormat,
+  syncBlogList2Readme,
 } from './common.mjs';
-
-function insertBlogList(lang = 'en') {
-  // Whenever you change README*.md blog list title，remember sync here.
-  const lang2Title = {
-    en: 'Blog list',
-    zh_CN: '文章列表',
-  };
-  function isHead(node) {
-    return is(node, 'text') && node.value === lang2Title[lang];
-  }
-  function createListItem({ title, url }) {
-    const node = Object.create(null);
-    Object.assign(node, {
-      type: 'listItem',
-      ordered: false,
-      spread: false,
-      children: [
-        {
-          type: 'paragraph',
-          children: [
-            {
-              type: 'link',
-              title: null,
-              spread: false,
-              url,
-              children: [
-                {
-                  type: 'text',
-                  value: title,
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    });
-    return node;
-  }
-  function createListNode(list) {
-    const root = Object.create(null);
-    Object.assign(root, {
-      type: 'list',
-      ordered: false,
-      children: list.map((item) => createListItem(item)),
-    });
-    return root;
-  }
-
-  return async (tree) => {
-    let headIndex = -1;
-    visit(tree, 'heading', (node, index) => {
-      if (node.children && isHead(node.children[0])) {
-        headIndex = index;
-      }
-    });
-    if (headIndex > -1) {
-      const nextIndex = headIndex + 1;
-      const nextNode = tree.children[nextIndex];
-      const manifest = await readBlogManifest();
-      const list = Object.entries(manifest)
-        .sort((a, b) => {
-          const [aTitle, aData] = a;
-          const [bTitle, bData] = b;
-          const { date: aDate } = aData;
-          const { date: bDate } = bData;
-          if (aDate && bDate) {
-            return dayjs(bDate) - dayjs(aDate);
-          }
-          return bTitle.localeCompare(aTitle);
-        })
-        .map((entry) => ({
-          title: entry[0],
-          url: encodeURI(`https://avennn.github.io${createBlogPermalinkPath(entry[1].id)}`),
-        }));
-
-      if (is(nextNode, 'list')) {
-        tree.children.splice(nextIndex, 1, createListNode(list));
-      } else {
-        tree.children.splice(nextIndex, 0, createListNode(list));
-      }
-    }
-  };
-}
-
-export async function syncBlogList2Readme() {
-  const list = [
-    ['en', readmePath],
-    ['zh_CN', readmeCNPath],
-  ];
-  for (const [lang, mdPath] of list) {
-    const md = await remark()
-      .use(insertBlogList, lang)
-      .process(await fs.readFile(mdPath));
-
-    await prettierFormat(mdPath, md.toString(), 'markdown');
-  }
-}
 
 function insertPermalink(id) {
   return (tree) => {
