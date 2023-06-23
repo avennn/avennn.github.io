@@ -26,7 +26,7 @@ dayjs.extend(timezone);
 dayjs.extend(advancedFormat);
 dayjs.tz.setDefault('Asia/Shanghai');
 
-function replaceWithLocalImages() {
+function replaceWithLocalImages(imageStore) {
   function isYuQueUrl(url) {
     return url && url.startsWith('https://cdn.nlark.com/yuque');
   }
@@ -51,7 +51,7 @@ function replaceWithLocalImages() {
     });
     for await (const node of imageNodes) {
       const { imageName, localUrl } = await downloadImage(node.url);
-      images.push(imageName);
+      imageStore.push(imageName);
       node.url = localUrl;
     }
   };
@@ -140,7 +140,7 @@ const destPath = path.join(blogOutputDir, destName);
 // 下载图片 + 输出md到_posts
 const file = await remark()
   .use(remarkFrontmatter)
-  .use(replaceWithLocalImages)
+  .use(replaceWithLocalImages, images)
   .use(insertFrontMatter)
   .process(await fs.readFile(blogPath));
 
