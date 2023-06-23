@@ -98,7 +98,7 @@ function insertFrontMatter() {
         `\ndate: ${now}` +
         `\ncategories: [前端]` +
         `\ntags: [js]` +
-        `\npermalink: /posts/${blogId}`;
+        `\npermalink: /posts/${blogId}/`;
       if (coverUrl) {
         frontMatter.value += `\nimage:\n${level2Space[1]}path: ${coverUrl}`;
       }
