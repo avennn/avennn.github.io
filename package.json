@@ -28,7 +28,7 @@
     "test": "./tools/test",
     "dev": "bundle exec jekyll serve",
     "digest": "node tools/digest.mjs",
-    "fixdata": "node tools/batchFixData.mjs",
+    "syncdata": "node tools/syncData.mjs",
     "gen:highlight-css": "node tools/genHighlightCSS.mjs",
     "gen": "npm run gen:highlight-css"
   },
@@ -58,6 +58,7 @@
     "rollup-plugin-license": "^3.0.1",
     "stylelint": "^15.3.0",
     "stylelint-config-standard-scss": "^7.0.1",
+    "unist-util-is": "^5.2.1",
     "unist-util-visit": "^4.1.2",
     "uuid": "^9.0.0"
   },

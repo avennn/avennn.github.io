@@ -5,6 +5,7 @@ import os from 'node:os';
 import { remark } from 'remark';
 import remarkFrontmatter from 'remark-frontmatter';
 import { visit } from 'unist-util-visit';
+import { is } from 'unist-util-is';
 import { v4 as uuidv4 } from 'uuid';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat.js';
@@ -19,8 +20,10 @@ import {
   blogImgOutputDir,
   blogImgRelativeUrl,
   prettierConfigPath,
-  blogRelativePermalLink,
-} from './config.mjs';
+  readBlogManifest,
+  createBlogPermalinkPath,
+} from './common.mjs';
+import { syncBlogList2Readme } from './syncData.mjs';
 
 dayjs.extend(timezone);
 dayjs.extend(advancedFormat);
@@ -57,7 +60,7 @@ function replaceWithLocalImages(imageStore) {
   };
 }
 
-function insertFrontMatter() {
+function insertFrontMatter({ id, date }) {
   function removeCoverImage(tree) {
     // 递归找第一个元素，如果是image类型，则为封面图
     let parent;
@@ -66,7 +69,7 @@ function insertFrontMatter() {
       parent = node;
       node = node.children[0];
     }
-    if (node.type === 'image') {
+    if (is(node, 'image')) {
       const url = node.url;
       parent.children.shift();
       return url;
@@ -87,14 +90,13 @@ function insertFrontMatter() {
     });
     if (!hasFrontMatter) {
       const frontMatter = Object.create(null);
-      const now = dayjs().format('YYYY-MM-DD HH:mm:ss ZZ');
       frontMatter.type = 'yaml';
       frontMatter.value =
         `title: ${fileName}` +
-        `\ndate: ${now}` +
+        `\ndate: ${date}` +
         `\ncategories: [前端]` +
         `\ntags: [js]` +
-        `\npermalink: ${blogRelativePermalLink}/${blogId}/`;
+        `\npermalink: ${createBlogPermalinkPath(id)}`;
       if (coverUrl) {
         frontMatter.value += `\nimage:\n${level2Space[1]}path: ${coverUrl}`;
       }
@@ -130,33 +132,40 @@ if (!blogPath || !blogPath.endsWith('.md')) {
 }
 
 console.log('Digesting blog...');
-const blogId = uuidv4();
-const images = [];
+
 const fileNameWithSuffix = path.basename(blogPath);
 const fileName = fileNameWithSuffix.substring(0, fileNameWithSuffix.indexOf('.'));
 const destName = `${dayjs().format('YYYY-MM-DD')}-${fileName}.md`;
 const destPath = path.join(blogOutputDir, destName);
 
+const blogId = uuidv4();
+const images = [];
+const now = dayjs().format('YYYY-MM-DD HH:mm:ss ZZ');
+
 // 下载图片 + 输出md到_posts
 const file = await remark()
   .use(remarkFrontmatter)
   .use(replaceWithLocalImages, images)
-  .use(insertFrontMatter)
+  .use(insertFrontMatter, { id: blogId, date: now })
   .process(await fs.readFile(blogPath));
 
 await fs.writeFile(destPath, file.toString());
 
 // 修改blogs.json
-const manifest = JSON.parse(await fs.readFile(blogManifestPath, { encoding: 'utf8' }));
+const manifest = await readBlogManifest();
 Object.assign(manifest, {
   [fileName]: {
     id: blogId,
     postName: destName,
+    date: now,
     images,
   },
 });
 const prettierOpts = await prettier.resolveConfig(prettierConfigPath);
-fs.writeFile(
+await fs.writeFile(
   blogManifestPath,
   prettier.format(JSON.stringify(manifest), { ...prettierOpts, parser: 'json' })
 );
+
+// 自动修改README.md
+await syncBlogList2Readme();
