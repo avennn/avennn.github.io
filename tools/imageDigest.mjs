@@ -173,5 +173,5 @@ export async function cropImage(input, output, options) {
 }
 
 export async function fitCover(input, output) {
-  return await resizeCover(input, output);
+  return await cropCover(input, output);
 }

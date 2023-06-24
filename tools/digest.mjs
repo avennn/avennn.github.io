@@ -97,7 +97,7 @@ function replaceWithLocalImages(imageStore) {
             {
               type: 'confirm',
               name: 'toFit',
-              message: "Cover's aspect ratio is invalid. Auto resize it?",
+              message: "Cover's aspect ratio is not 16/9. Auto fit it?",
             },
           ]);
           if (toFit) {
@@ -105,11 +105,16 @@ function replaceWithLocalImages(imageStore) {
               outputDir: blogTempImgOutputDir,
               outputName: `${imageId}_fit`,
             });
+
+            let relativeP = path.relative(process.cwd(), fitUrl);
+            if (!relativeP.startsWith('.')) {
+              relativeP = `./${relativeP}`;
+            }
             const { fitOk } = await inquirer.prompt([
               {
                 type: 'confirm',
                 name: 'fitOk',
-                message: `Review image: ${path.relative(process.cwd(), fitUrl)}. Is it ok?`,
+                message: `Review image: ${relativeP}. Is it ok?`,
               },
             ]);
             if (fitOk) {
