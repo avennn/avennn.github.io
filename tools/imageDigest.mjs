@@ -61,6 +61,7 @@ export async function compressImage(input, output = {}, forceAnimated) {
   if (!(await isFileOrDirExist(outputDir))) {
     await fs.mkdir(outputDir, { recursive: true });
   }
+
   const to = `${outputDir}/${outputName}.${format}`;
   await image.toFile(to);
 

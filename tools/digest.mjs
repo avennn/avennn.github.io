@@ -45,8 +45,14 @@ function replaceWithLocalImages(imageStore) {
     const { pathname } = new URL(url);
     const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
     const imageName = `${id}.${ext}`;
+
+    if (!(await isFileOrDirExist(blogTempImgOutputDir))) {
+      await fs.mkdir(blogTempImgOutputDir, { recursive: true });
+    }
+
     const tempUrl = path.join(blogTempImgOutputDir, imageName);
     await fs.writeFile(tempUrl, Buffer.from(arrayBuffer));
+
     return { imageId: id, imageName, localUrl: `${blogImgRelativeUrl}/${imageName}`, tempUrl };
   }
 
@@ -66,8 +72,10 @@ function replaceWithLocalImages(imageStore) {
       // Download image to temp dir
       const { imageId, imageName, localUrl, tempUrl } = await downloadImage(node.url);
       downloadedUrls.push(node.url);
+
       // Compress image and copy to real output dir
       await compressImage(tempUrl, { outputDir: blogImgOutputDir, outputName: imageId });
+
       imageStore.push(imageName);
       node.url = localUrl;
     }
