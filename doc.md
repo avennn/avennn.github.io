@@ -13,18 +13,18 @@ https://realfavicongenerator.net/
 - [ ] 文章授权协议
 - [ ] google 分析, Google Analytics 4
 - [ ] 自定义 jekyll plugin，liquid tag，忽略 code block 和 inline code 的 curly bracket.
+- [ ] Readme插入博客列表，remark和prettier样式同步（remark看是否可以配置或者有插件，或者prettier是否可以修改默认格式效果），以此可以去掉prettier format的调用，提升性能。
 
 ## 图片压缩
 
 开源 npm 包
 
 - [sharp](https://github.com/lovell/sharp)
-- [gm](https://github.com/aheckmann/gm)
 - [imagemin](https://github.com/imagemin/imagemin)
 - [compress-images](https://github.com/Yuriy-Svetlov/compress-images/)
 
 平台
 
 - [tinypng](https://tinypng.com/)
-- [karen.io](https://kraken.io/)
-- compressor.io
+
+https://stackoverflow.com/questions/39894913/how-do-i-get-the-best-png-compression-with-gulp-imagemin-plugins
