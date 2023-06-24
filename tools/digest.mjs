@@ -114,7 +114,7 @@ function replaceWithLocalImages(imageStore) {
               {
                 type: 'confirm',
                 name: 'fitOk',
-                message: `Review image: ${relativeP}. Is it ok?`,
+                message: `Review image: [${relativeP}]. Is it ok?`,
               },
             ]);
             if (fitOk) {
