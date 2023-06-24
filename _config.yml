@@ -183,6 +183,7 @@ exclude:
   - '*.gem'
   - '*.gemspec'
   - tools
+  - assets/img/blogs-temp
   - README*.md
   - doc.md
   - CHANGELOG.md

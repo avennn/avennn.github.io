@@ -21,3 +21,6 @@ node_modules
 
 # macos
 .DS_Store
+
+# temporary dir or files
+assets/img/blogs-temp

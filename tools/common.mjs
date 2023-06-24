@@ -8,6 +8,15 @@ import { visit } from 'unist-util-visit';
 import { is } from 'unist-util-is';
 import dayjs from 'dayjs';
 
+export async function isFileOrDirExist(p) {
+  try {
+    await fs.access(p);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 export function getDirName(importMetaUrl) {
   let file = importMetaUrl;
   if (importMetaUrl.includes('://')) {
@@ -140,6 +149,7 @@ export const blogManifestPath = resolve('../_data/blogs.json');
 export const blogRelativePermalLink = '/posts';
 export const blogOutputDir = resolve('../_posts');
 export const blogImgRelativeUrl = '/assets/img/blogs';
+export const blogTempImgRelativeUrl = '/assets/img/blogs-temp';
 export const blogImgOutputDir = resolve(`../${blogImgRelativeUrl}`);
 export const prettierConfigPath = resolve('../.prettierrc');
 export const readmePath = resolve('../README.md');

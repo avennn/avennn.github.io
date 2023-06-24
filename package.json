@@ -2,6 +2,7 @@
   "name": "avennn.github.io",
   "version": "1.0.0",
   "description": "Personal blog",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/avennn/avennn.github.io.git"
@@ -56,6 +57,7 @@
     "rimraf": "^4.4.1",
     "rollup": "^3.20.2",
     "rollup-plugin-license": "^3.0.1",
+    "sharp": "^0.32.1",
     "stylelint": "^15.3.0",
     "stylelint-config-standard-scss": "^7.0.1",
     "unist-util-is": "^5.2.1",
