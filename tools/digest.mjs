@@ -125,7 +125,18 @@ function replaceWithLocalImages(imageStore) {
       }
 
       // Compress image and copy to real output dir
-      await compressImage(tempUrl, { outputDir: blogImgOutputDir, outputName: imageId });
+      const finalUrl = await compressImage(tempUrl, {
+        outputDir: blogImgOutputDir,
+        outputName: imageId,
+      });
+
+      const { size } = await getImageMetaData(finalUrl);
+      // 1MB
+      if (size > 1024 * 1024) {
+        console.log(
+          chalk(`Warning: final image ${finalUrl} is still larger than 1MB. Crop it manually!`)
+        );
+      }
 
       imageStore.push(imageName);
       node.url = localUrl;
