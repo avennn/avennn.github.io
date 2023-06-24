@@ -25,9 +25,9 @@ image:
 ### 介绍
 
 prettier是一个适用于多种语言的代码格式化工具，对保持团队内代码风格的一致性很有帮助。自从用上了prettier，我写代码就完全不用关心缩进、空格、换行等问题，思维只专注于代码逻辑，开发效率提升不少。
-关于prettier，官网有这样一段描述
+关于prettier，官网有这样一段描述：
 
-![image.png](/assets/img/blogs/d7fd3766-b6bd-49ea-9697-7a1e0903bfe1.png)
+![image.png](/assets/img/blogs/d7fd3766-b6bd-49ea-9697-7a1e0903bfe1.png){: width="400"}
 
 这里我只关心第一点和第四点，`opinionated`，谷歌翻译过来的意思是“自以为是的”。说人话就是，prettier给我们提供了一套它认为合理的代码风格，我们只要按它的风格来就好了。当然，prettier还是提供了一定的配置项（虽然很少）给我们，让开发者拥有一定的自由度配出合乎自己习惯的代码规范。
 prettier只关心代码风格，不关心代码质量。所以它不像eslint那样有`no-undefined`、`prefer-const`这样的规则，能发现代码中潜在的错误或者可以优化的点，并给出建议。对于代码中的语法错误，prettier无能为力。
@@ -126,7 +126,7 @@ const user5 = { name: 'Cyndi Wang', age: 18 };
 ### 源码分析
 
 从eslint的`package.json`文件开始，结合debugger，一路分析，源码调用链如下：
-![eslint原理.png](/assets/img/blogs/efca880a-4cee-49ba-8d65-ffdc183d6d32.png)
+![eslint原理.png](/assets/img/blogs/efca880a-4cee-49ba-8d65-ffdc183d6d32.png){: width="400" }
 其中核心的是`linter.js`中的`verifyAndFix`和`runRules`方法。
 先来讲`runRules`方法，以下是精简后的代码：
 
