@@ -155,3 +155,8 @@ export const blogTempImgOutputDir = resolve(`../${blogTempImgRelativeUrl}`);
 export const prettierConfigPath = resolve('../.prettierrc');
 export const readmePath = resolve('../README.md');
 export const readmeCNPath = resolve('../README.zh_CN.md');
+// TODO:
+export const defaultCoverSize = {
+  width: 500,
+  height: 200,
+};

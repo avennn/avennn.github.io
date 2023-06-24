@@ -15,7 +15,7 @@ import fetch from 'node-fetch';
 import inquirer from 'inquirer';
 import inquirerFileTreeSelection from 'inquirer-file-tree-selection-prompt';
 import chalk from 'chalk';
-import { rimraf } from 'rimraf';
+import shell from 'shelljs';
 import {
   blogManifestPath,
   blogOutputDir,
@@ -28,11 +28,24 @@ import {
   syncBlogList2Readme,
   isFileOrDirExist,
 } from './common.mjs';
-import { compressImage } from './imageDigest.mjs';
+import { compressImage, getImageMetaData, fitImageByDefault } from './imageDigest.mjs';
 
 dayjs.extend(timezone);
 dayjs.extend(advancedFormat);
 dayjs.tz.setDefault('Asia/Shanghai');
+
+function lookupCoverImage(tree) {
+  let parent;
+  let node = tree;
+  while (node.children && node.children.length) {
+    parent = node;
+    node = node.children[0];
+  }
+  if (is(node, 'image')) {
+    return { node, parent };
+  }
+  return { node: null, parent: null };
+}
 
 function replaceWithLocalImages(imageStore) {
   function isYuQueUrl(url) {
@@ -68,11 +81,42 @@ function replaceWithLocalImages(imageStore) {
 
     const expectedUrls = imageNodes.map((item) => item.url);
     const downloadedUrls = [];
+    const { node: coverNode } = lookupCoverImage(tree);
 
     for await (const node of imageNodes) {
       // Download image to temp dir
-      const { imageId, imageName, localUrl, tempUrl } = await downloadImage(node.url);
+      let { imageId, imageName, localUrl, tempUrl } = await downloadImage(node.url);
       downloadedUrls.push(node.url);
+
+      if (node.url === coverNode.url) {
+        const { width, height } = await getImageMetaData(tempUrl);
+        // TODO: 太多层if，用命令模式或者职责链模式改造？
+        if (width > 500) {
+          const { toFit } = await inquirer.prompt([
+            {
+              type: 'confirm',
+              name: 'toFit',
+              message: 'Cover dimension is invalid. Sure to fit image?',
+            },
+          ]);
+          if (toFit) {
+            const fitUrl = await fitImageByDefault(tempUrl, {
+              outputDir: blogTempImgOutputDir,
+              outputName: `${imageId}.fit`,
+            });
+            const { fitOk } = await inquirer.prompt([
+              {
+                type: 'confirm',
+                name: 'fitOk',
+                message: 'Is this fitted image ok?',
+              },
+            ]);
+            if (fitOk) {
+              shell.mv(fitUrl, tempUrl);
+            }
+          }
+        }
+      }
 
       // Compress image and copy to real output dir
       await compressImage(tempUrl, { outputDir: blogImgOutputDir, outputName: imageId });
@@ -94,14 +138,8 @@ function replaceWithLocalImages(imageStore) {
 
 function insertFrontMatter({ id, date }) {
   function removeCoverImage(tree) {
-    // find cover image
-    let parent;
-    let node = tree;
-    while (node.children && node.children.length) {
-      parent = node;
-      node = node.children[0];
-    }
-    if (is(node, 'image')) {
+    const { node, parent } = lookupCoverImage(tree);
+    if (node) {
       const url = node.url;
       parent.children.shift();
       return url;
@@ -140,7 +178,7 @@ function insertFrontMatter({ id, date }) {
 const [, , ...blogSegments] = process.argv;
 let blogPath;
 if (!blogSegments.length) {
-  // Inquirer.js prompt file select
+  // Prompt file select
   inquirer.registerPrompt('file-tree-selection', inquirerFileTreeSelection);
 
   const { md } = await inquirer.prompt({
@@ -166,7 +204,7 @@ console.log(chalk.cyan('Digesting blog...'));
 
 // clear temporary blog image output dir
 // TODO: keep this for a while, maybe helpful
-// await rimraf(blogTempImgOutputDir);
+// await shell.rm('-rf', blogTempImgOutputDir);
 
 const fileNameWithSuffix = path.basename(blogPath);
 const fileName = fileNameWithSuffix.substring(0, fileNameWithSuffix.indexOf('.'));
