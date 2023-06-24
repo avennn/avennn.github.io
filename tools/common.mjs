@@ -8,11 +8,11 @@ import { visit } from 'unist-util-visit';
 import { is } from 'unist-util-is';
 import dayjs from 'dayjs';
 
-function getDirName(p) {
-  let file = p;
-  if (p.includes('://')) {
-    const url = new URL(p);
-    file = url.protocol === 'file:' ? fileURLToPath(p) : url.href;
+export function getDirName(importMetaUrl) {
+  let file = importMetaUrl;
+  if (importMetaUrl.includes('://')) {
+    const url = new URL(importMetaUrl);
+    file = url.protocol === 'file:' ? fileURLToPath(importMetaUrl) : url.href;
   }
   return path.dirname(file);
 }
