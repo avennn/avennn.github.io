@@ -433,6 +433,7 @@ i {
       @extend %img-caption;
       @include mt-mb(0.5rem);
 
+      display: table;
       cursor: zoom-in;
 
       /* 默认增加阴影 */
