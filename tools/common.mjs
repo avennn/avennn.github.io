@@ -156,7 +156,8 @@ export const prettierConfigPath = resolve('../.prettierrc');
 export const readmePath = resolve('../README.md');
 export const readmeCNPath = resolve('../README.zh_CN.md');
 // TODO:
+export const goldAspectRatio = 16 / 9;
 export const defaultCoverSize = {
-  width: 500,
-  height: 200,
+  width: 800,
+  height: Math.ceil(800 / goldAspectRatio),
 };

@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import sharp from 'sharp';
-import { isFileOrDirExist, defaultCoverSize } from './common.mjs';
+import { isFileOrDirExist, defaultCoverSize, goldAspectRatio } from './common.mjs';
 
 /**
  * @param {string | Buffer} input: image path or Buffer
@@ -96,15 +96,11 @@ export async function getImageMetaData(input) {
 }
 
 /**
- * @param {string | Buffer} input: image path or Buffer
- */
-export function resizeImage(input) {}
-
-/**
+ * auto
  * @param {string | Buffer} input: image path or Buffer
  * @param {object} output: {outputDir, outputName}
  */
-export async function resizeImageByDefault(input, output) {
+export async function resizeCover(input, output) {
   const { width, height } = defaultCoverSize;
   const format = await getImageIntrinsicFormat(input);
   const { outputDir, outputName } = ensureOutput(input, output);
@@ -118,14 +114,44 @@ export async function resizeImageByDefault(input, output) {
   return to;
 }
 
-export async function outsideImageByDefault(input, output) {
-  const { width, height } = defaultCoverSize;
+/**
+ * manual util
+ * @param {string | Buffer} input: image path or Buffer
+ * @param {object} output: {outputDir, outputName}
+ */
+export async function resizeImage(input, output, options) {
   const format = await getImageIntrinsicFormat(input);
   const { outputDir, outputName } = ensureOutput(input, output);
-  const image = sharp(await extractBuffer(input), { animated: format === 'gif' }).resize({
-    width,
-    height,
-    fit: 'outside',
+  const image = sharp(await extractBuffer(input), { animated: format === 'gif' }).resize(options);
+  const to = `${outputDir}/${outputName}.${format}`;
+  await image.toFile(to);
+  return to;
+}
+
+/**
+ * auto
+ * @param {string | Buffer} input: image path or Buffer
+ * @param {object} output: {outputDir, outputName}
+ */
+export async function cropCover(input, output) {
+  const { format, width, height } = await getImageMetaData(input);
+  const { outputDir, outputName } = ensureOutput(input, output);
+  let w = width,
+    h = height,
+    left = 0,
+    top = 0;
+  if (width / height >= goldAspectRatio) {
+    w = Math.floor(height * goldAspectRatio);
+    left = Math.floor((width - w) / 2);
+  } else {
+    h = Math.floor(width / goldAspectRatio);
+    top = Math.floor((height - h) / 2);
+  }
+  const image = sharp(await extractBuffer(input), { animated: format === 'gif' }).extract({
+    left,
+    top,
+    width: w,
+    height: h,
   });
   const to = `${outputDir}/${outputName}.${format}`;
   await image.toFile(to);
@@ -133,22 +159,19 @@ export async function outsideImageByDefault(input, output) {
 }
 
 /**
+ * manual util
  * @param {string | Buffer} input: image path or Buffer
+ * @param {object} output: {outputDir, outputName}
  */
-export function cropImage(input) {}
-
-/**
- * @param {string | Buffer} input: image path or Buffer
- */
-export async function cropImageByDefault(input) {
-  sharp(await extractBuffer(input))
-    .extract({ left: left, top: top, width: width, height: height })
-    .toFile(output, function (err) {
-      // Extract a region of the input image, saving in the same format.
-    });
+export async function cropImage(input, output, options) {
+  const format = await getImageIntrinsicFormat(input);
+  const { outputDir, outputName } = ensureOutput(input, output);
+  const image = sharp(await extractBuffer(input), { animated: format === 'gif' }).extract(options);
+  const to = `${outputDir}/${outputName}.${format}`;
+  await image.toFile(to);
+  return to;
 }
 
-export async function fitImageByDefault(input, output) {
-  // resize or crop?
-  return await resizeImageByDefault(input, output);
+export async function fitCover(input, output) {
+  return await resizeCover(input, output);
 }

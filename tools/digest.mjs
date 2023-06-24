@@ -27,8 +27,9 @@ import {
   prettierFormat,
   syncBlogList2Readme,
   isFileOrDirExist,
+  goldAspectRatio,
 } from './common.mjs';
-import { compressImage, getImageMetaData, fitImageByDefault } from './imageDigest.mjs';
+import { compressImage, getImageMetaData, fitCover } from './imageDigest.mjs';
 
 dayjs.extend(timezone);
 dayjs.extend(advancedFormat);
@@ -91,24 +92,24 @@ function replaceWithLocalImages(imageStore) {
       if (node.url === coverNode.url) {
         const { width, height } = await getImageMetaData(tempUrl);
         // TODO: 太多层if，用命令模式或者职责链模式改造？
-        if (width > 500) {
+        if (width / height !== goldAspectRatio) {
           const { toFit } = await inquirer.prompt([
             {
               type: 'confirm',
               name: 'toFit',
-              message: 'Cover dimension is invalid. Sure to fit image?',
+              message: "Cover's aspect ratio is invalid. Auto resize it?",
             },
           ]);
           if (toFit) {
-            const fitUrl = await fitImageByDefault(tempUrl, {
+            const fitUrl = await fitCover(tempUrl, {
               outputDir: blogTempImgOutputDir,
-              outputName: `${imageId}.fit`,
+              outputName: `${imageId}_fit`,
             });
             const { fitOk } = await inquirer.prompt([
               {
                 type: 'confirm',
                 name: 'fitOk',
-                message: 'Is this fitted image ok?',
+                message: `Review image: ${path.relative(process.cwd(), fitUrl)}. Is it ok?`,
               },
             ]);
             if (fitOk) {
