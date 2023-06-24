@@ -26,6 +26,7 @@ import {
   createBlogPermalinkPath,
   prettierFormat,
   syncBlogList2Readme,
+  isFileOrDirExist,
 } from './common.mjs';
 import { compressImage } from './imageDigest.mjs';
 
