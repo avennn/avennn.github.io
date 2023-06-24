@@ -14,16 +14,20 @@ import timezone from 'dayjs/plugin/timezone.js';
 import fetch from 'node-fetch';
 import inquirer from 'inquirer';
 import inquirerFileTreeSelection from 'inquirer-file-tree-selection-prompt';
+import chalk from 'chalk';
+import { rimraf } from 'rimraf';
 import {
   blogManifestPath,
   blogOutputDir,
   blogImgOutputDir,
+  blogTempImgOutputDir,
   blogImgRelativeUrl,
   readBlogManifest,
   createBlogPermalinkPath,
   prettierFormat,
   syncBlogList2Readme,
 } from './common.mjs';
+import { compressImage } from './imageDigest.mjs';
 
 dayjs.extend(timezone);
 dayjs.extend(advancedFormat);
@@ -41,21 +45,40 @@ function replaceWithLocalImages(imageStore) {
     const { pathname } = new URL(url);
     const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
     const imageName = `${id}.${ext}`;
-    await fs.writeFile(path.join(blogImgOutputDir, imageName), Buffer.from(arrayBuffer));
-    return { imageName, localUrl: `${blogImgRelativeUrl}/${imageName}` };
+    const tempUrl = path.join(blogTempImgOutputDir, imageName);
+    await fs.writeFile(tempUrl, Buffer.from(arrayBuffer));
+    return { imageId: id, imageName, localUrl: `${blogImgRelativeUrl}/${imageName}`, tempUrl };
   }
 
   return async (tree) => {
     const imageNodes = [];
+
     visit(tree, 'image', (node) => {
       if (isYuQueUrl(node.url)) {
         imageNodes.push(node);
       }
     });
+
+    const expectedUrls = imageNodes.map((item) => item.url);
+    const downloadedUrls = [];
+
     for await (const node of imageNodes) {
-      const { imageName, localUrl } = await downloadImage(node.url);
+      // Download image to temp dir
+      const { imageId, imageName, localUrl, tempUrl } = await downloadImage(node.url);
+      downloadedUrls.push(node.url);
+      // Compress image and copy to real output dir
+      await compressImage(tempUrl, { outputDir: blogImgOutputDir, outputName: imageId });
       imageStore.push(imageName);
       node.url = localUrl;
+    }
+
+    // console error info
+    const failedUrls = expectedUrls.filter((url) => !downloadedUrls.includes(url));
+    console.log(
+      `Images expected: ${expectedUrls.length}, actual: ${downloadedUrls.length}, failed: ${failedUrls.length}`
+    );
+    if (failedUrls.length) {
+      console.log(chalk.red(`\nFailed lsit:\n${failedUrls.join('\n')}`));
     }
   };
 }
@@ -131,7 +154,10 @@ if (!blogPath || !blogPath.endsWith('.md')) {
   process.exit(1);
 }
 
-console.log('Digesting blog...');
+console.log(chalk.cyan('Digesting blog...'));
+
+// clear temporary blog image output dir
+await rimraf(blogTempImgOutputDir);
 
 const fileNameWithSuffix = path.basename(blogPath);
 const fileName = fileNameWithSuffix.substring(0, fileNameWithSuffix.indexOf('.'));
@@ -165,3 +191,5 @@ await prettierFormat(blogManifestPath, JSON.stringify(manifest), 'json');
 
 // 自动修改README.md
 await syncBlogList2Readme();
+
+console.log(chalk.green('Success!'));

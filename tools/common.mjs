@@ -151,6 +151,7 @@ export const blogOutputDir = resolve('../_posts');
 export const blogImgRelativeUrl = '/assets/img/blogs';
 export const blogTempImgRelativeUrl = '/assets/img/blogs-temp';
 export const blogImgOutputDir = resolve(`../${blogImgRelativeUrl}`);
+export const blogTempImgOutputDir = resolve(`../${blogTempImgRelativeUrl}`);
 export const prettierConfigPath = resolve('../.prettierrc');
 export const readmePath = resolve('../README.md');
 export const readmeCNPath = resolve('../README.zh_CN.md');
