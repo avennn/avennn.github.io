@@ -36,7 +36,7 @@ export async function compressImage(input, output = {}, forceAnimated) {
     if (!outputName) {
       const basename = path.basename(input);
       const dotIndex = basename.lastIndexOf('.');
-      outputName = basename.substring(0, dotIndex > -1 ? dotIndex + 1 : Infinity);
+      outputName = basename.substring(0, dotIndex > -1 ? dotIndex : Infinity);
     }
     image = sharp(await fs.readFile(input), option);
   }
@@ -68,13 +68,13 @@ export async function compressImage(input, output = {}, forceAnimated) {
   return to;
 }
 
-const dir = path.join(getDirName(import.meta.url), '../assets/img/blogs-temp');
+const dir = path.join(getDirName(import.meta.url), '../assets/img/blogs');
 
 function resolve(name) {
   return path.join(dir, name);
 }
 
-compressImage(
-  '/Users/liangjianwen/Desktop/workspace/projects/avennn.github.io/assets/img/blogs/1b4d4ddb-7620-477e-b1f9-8f3ce24574e4.jpeg',
-  { outputName: '1', outputDir: dir }
-);
+// compressImage(
+//   '/Users/liangjianwen/Desktop/workspace/projects/avennn.github.io/assets/img/blogs/1b4d4ddb-7620-477e-b1f9-8f3ce24574e4.jpeg',
+//   { outputName: '1', outputDir: dir }
+// );

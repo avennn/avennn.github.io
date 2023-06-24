@@ -94,7 +94,7 @@ function replaceWithLocalImages(imageStore) {
 
 function insertFrontMatter({ id, date }) {
   function removeCoverImage(tree) {
-    // 递归找第一个元素，如果是image类型，则为封面图
+    // find cover image
     let parent;
     let node = tree;
     while (node.children && node.children.length) {
@@ -137,7 +137,6 @@ function insertFrontMatter({ id, date }) {
   };
 }
 
-// 整理入参，判断是否传入博客md文件
 const [, , ...blogSegments] = process.argv;
 let blogPath;
 if (!blogSegments.length) {
@@ -166,7 +165,8 @@ if (!blogPath || !blogPath.endsWith('.md')) {
 console.log(chalk.cyan('Digesting blog...'));
 
 // clear temporary blog image output dir
-await rimraf(blogTempImgOutputDir);
+// TODO: keep this for a while, maybe helpful
+// await rimraf(blogTempImgOutputDir);
 
 const fileNameWithSuffix = path.basename(blogPath);
 const fileName = fileNameWithSuffix.substring(0, fileNameWithSuffix.indexOf('.'));
@@ -177,7 +177,7 @@ const blogId = uuidv4();
 const images = [];
 const now = dayjs().format('YYYY-MM-DD HH:mm:ss ZZ');
 
-// 下载图片 + 输出md到_posts
+// download images + output blog md to _posts
 const file = await remark()
   .use(remarkFrontmatter)
   .use(replaceWithLocalImages, images)
@@ -186,7 +186,7 @@ const file = await remark()
 
 await fs.writeFile(destPath, file.toString());
 
-// 修改blogs.json
+// modify blogs.json
 const manifest = await readBlogManifest();
 Object.assign(manifest, {
   [fileName]: {
@@ -198,7 +198,7 @@ Object.assign(manifest, {
 });
 await prettierFormat(blogManifestPath, JSON.stringify(manifest), 'json');
 
-// 自动修改README.md
+// auto sync blog list to README.md
 await syncBlogList2Readme();
 
 console.log(chalk.green('Success!'));
