@@ -148,6 +148,8 @@ defaults:
       # to update the code of all other post links in this project.
       # Coverd by FrontMatter permalink
       permalink: /posts/:title/
+      # Disable liquid rendering posts, fix conflict with jsx curly bracket.
+      render_with_liquid: false
   - scope:
       path: _drafts
     values:
