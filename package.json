@@ -27,7 +27,7 @@
     "lint:md": "npx markdownlint-cli2 _sass/**/*.scss",
     "fixlint": "npm run lint -- --fix",
     "test": "./tools/test",
-    "dev": "bundle exec jekyll serve",
+    "dev": "npm run build && bundle exec jekyll serve",
     "digest": "node tools/digest.mjs",
     "syncdata": "node tools/syncData.mjs",
     "gen:highlight-css": "node tools/genHighlightCSS.mjs",

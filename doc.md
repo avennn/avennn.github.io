@@ -4,6 +4,15 @@
 
 https://realfavicongenerator.net/
 
+## 博客封面图选择
+
+- dota
+- 小时候的物件
+- 火影
+- 美景
+- 宫崎骏电影
+- 周星驰电影
+
 ## TODO
 
 - [ ] 自定义 jekyll plugin，liquid tag，忽略 code block 和 inline code 的 curly bracket.
