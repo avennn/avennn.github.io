@@ -58,7 +58,7 @@ function extractBlogDate(id) {
       }
     });
     const manifest = await readBlogManifest();
-    const dataItem = Object.keys(manifest).find((item) => item === id);
+    const dataItem = manifest[id];
     dataItem.date = date;
     await prettierFormat(blogManifestPath, JSON.stringify(manifest), 'json');
   };
@@ -97,6 +97,6 @@ switch (type) {
     batchAddDate();
     break;
   default:
-    console.error('Usage: "yarn syncdata [readme, permalink]"');
+    console.error('Usage: "yarn syncdata [readme, permalink, date]"');
     process.exit(1);
 }
