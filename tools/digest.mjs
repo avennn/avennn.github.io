@@ -244,8 +244,8 @@ await fs.writeFile(destPath, file.toString());
 // modify blogs.json
 const manifest = await readBlogManifest();
 Object.assign(manifest, {
-  [fileName]: {
-    id: blogId,
+  [blogId]: {
+    title: fileName,
     postName: destName,
     date: now,
     images,

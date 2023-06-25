@@ -29,9 +29,9 @@ function insertPermalink(id) {
 async function addPermalink(blogPath) {
   const name = path.basename(blogPath);
   const manifest = await readBlogManifest();
-  const data = Object.values(manifest).find((item) => item.postName === name);
+  const data = Object.entries(manifest).find((item) => item[1].postName === name);
   if (data) {
-    const { id } = data;
+    const id = data[0];
     const file = await remark()
       .use(remarkFrontmatter)
       .use(insertPermalink, id)
@@ -58,7 +58,7 @@ function extractBlogDate(id) {
       }
     });
     const manifest = await readBlogManifest();
-    const dataItem = Object.values(manifest).find((item) => item.id === id);
+    const dataItem = Object.keys(manifest).find((item) => item === id);
     dataItem.date = date;
     await prettierFormat(blogManifestPath, JSON.stringify(manifest), 'json');
   };
@@ -67,9 +67,9 @@ function extractBlogDate(id) {
 async function addDate(blogPath) {
   const name = path.basename(blogPath);
   const manifest = await readBlogManifest();
-  const data = Object.values(manifest).find((item) => item.postName === name);
+  const data = Object.entries(manifest).find((item) => item[1].postName === name);
   if (data) {
-    const { id } = data;
+    const id = data[0];
     await remark()
       .use(remarkFrontmatter)
       .use(extractBlogDate, id)
