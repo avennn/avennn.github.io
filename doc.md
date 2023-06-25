@@ -6,7 +6,6 @@ https://realfavicongenerator.net/
 
 ## TODO
 
-- [ ] blogs.json用id作为key防止文章标题重复导致覆盖
 - [ ] 字体样式加载后页面抖动问题
 - [ ] 文章授权协议
 - [ ] google 分析, Google Analytics 4
