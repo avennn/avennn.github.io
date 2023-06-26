@@ -4,7 +4,7 @@
 
 https://avennn.github.io/
 
-## Blog list
+## Blog list(21)
 
 - [Typescript 系列：索引访问类型](https://avennn.github.io/posts/444190b2-f3aa-44d4-b799-f3cff5632d50/)
 

@@ -54,7 +54,7 @@ export async function syncBlogList2Readme() {
       zh_CN: '文章列表',
     };
     function isHead(node) {
-      return is(node, 'text') && node.value === lang2Title[lang];
+      return is(node, 'text') && node.value.startsWith(lang2Title[lang]);
     }
     function createListItem({ title, url }) {
       const node = Object.create(null);
@@ -97,15 +97,20 @@ export async function syncBlogList2Readme() {
 
     return async (tree) => {
       let headIndex = -1;
+      const manifest = await readBlogManifest();
+
       visit(tree, 'heading', (node, index) => {
         if (node.children && isHead(node.children[0])) {
           headIndex = index;
+          node.children[0].value = `${lang2Title[lang]}${lang === 'zh_CN' ? '（' : '('}${
+            Object.keys(manifest).length
+          }${lang === 'zh_CN' ? '）' : ')'}`;
         }
       });
+
       if (headIndex > -1) {
         const nextIndex = headIndex + 1;
         const nextNode = tree.children[nextIndex];
-        const manifest = await readBlogManifest();
         const list = Object.entries(manifest)
           .sort((a, b) => {
             const { date: aDate, title: aTitle } = a[1];
