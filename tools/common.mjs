@@ -108,18 +108,16 @@ export async function syncBlogList2Readme() {
         const manifest = await readBlogManifest();
         const list = Object.entries(manifest)
           .sort((a, b) => {
-            const [aTitle, aData] = a;
-            const [bTitle, bData] = b;
-            const { date: aDate } = aData;
-            const { date: bDate } = bData;
+            const { date: aDate, title: aTitle } = a[1];
+            const { date: bDate, title: bTitle } = b[1];
             if (aDate && bDate) {
               return dayjs(bDate) - dayjs(aDate);
             }
             return bTitle.localeCompare(aTitle);
           })
           .map((entry) => ({
-            title: entry[0],
-            url: encodeURI(`https://avennn.github.io${createBlogPermalinkPath(entry[1].id)}`),
+            title: entry[1].title,
+            url: encodeURI(`https://avennn.github.io${createBlogPermalinkPath(entry[0])}`),
           }));
 
         if (is(nextNode, 'list')) {
