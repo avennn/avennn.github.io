@@ -15,7 +15,6 @@ https://realfavicongenerator.net/
 
 ## TODO
 
-- [ ] Readme插入博客列表，remark和prettier样式同步（remark看是否可以配置或者有插件，或者prettier是否可以修改默认格式效果），以此可以去掉prettier format的调用，提升性能。
 - [ ] 有时候修改scss，serve不生效，缓存更新失效？
 - [ ] 字体样式加载后页面抖动问题
 - [ ] 文章授权协议

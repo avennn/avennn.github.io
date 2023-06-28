@@ -4,6 +4,7 @@ import path from 'node:path';
 import { URL, fileURLToPath } from 'node:url';
 import prettier from 'prettier';
 import { remark } from 'remark';
+import remarkStringify from 'remark-stringify';
 import { visit } from 'unist-util-visit';
 import { is } from 'unist-util-is';
 import dayjs from 'dayjs';
@@ -124,7 +125,6 @@ export async function syncBlogList2Readme() {
             title: entry[1].title,
             url: encodeURI(`https://avennn.github.io${createBlogPermalinkPath(entry[0])}`),
           }));
-
         if (is(nextNode, 'list')) {
           tree.children.splice(nextIndex, 1, createListNode(list));
         } else {
@@ -142,9 +142,14 @@ export async function syncBlogList2Readme() {
   for (const [lang, mdPath] of list) {
     const md = await remark()
       .use(insertBlogList, lang)
+      .use(remarkStringify, {
+        bullet: '-',
+        bulletOther: '*',
+        listItemIndent: 'one',
+      })
       .process(await fs.readFile(mdPath));
 
-    await prettierFormat(mdPath, md.toString(), 'markdown');
+    await fs.writeFile(mdPath, md.toString());
   }
 }
 
