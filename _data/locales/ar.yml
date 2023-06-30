@@ -31,14 +31,14 @@ copyright:
   # Shown at the bottom of the post
   license:
     template: هذا المنشور تحت ترخيص :LICENSE_NAME بواسطة المؤلف.
-    name: CC BY 4.0
-    link: https://creativecommons.org/licenses/by/4.0/
+    name: CC BY-NC-ND 3.0
+    link: https://creativecommons.org/licenses/by-nc-nd/3.0/
 
   # Displayed in the footer
   brief: بعض الحقوق محفوظة.
   verbose: >-
     ما لم يذكر خلاف ذلك ، يتم ترخيص منشورات المدونة على هذا الموقع
-    بموجب ترخيص Creative Commons Attribution 4.0 International (CC BY 4.0) من قبل المؤلف.
+    بموجب ترخيص Creative Commons Attribution 4.0 International (CC BY-NC-ND 3.0) من قبل المؤلف.
 
 meta: باستخدام :PLATFORM السمة :THEME
 
@@ -75,11 +75,11 @@ post:
 # See: <http://strftime.net/>, <https://day.js.org/docs/en/display/format>
 df:
   post:
-    strftime: "%b %e, %Y"
-    dayjs: "ll"
+    strftime: '%b %e, %Y'
+    dayjs: 'll'
   archives:
-    strftime: "%b"
-    dayjs: "MMM"
+    strftime: '%b'
+    dayjs: 'MMM'
 
 # categories page
 categories:

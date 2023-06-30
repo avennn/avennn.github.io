@@ -31,13 +31,13 @@ copyright:
   # Shown at the bottom of the post
   license:
     template: Dieser Eintrag ist vom Autor unter :LICENSE_NAME lizensiert.
-    name: CC BY 4.0
-    link: https://creativecommons.org/licenses/by/4.0/
+    name: CC BY-NC-ND 3.0
+    link: https://creativecommons.org/licenses/by-nc-nd/3.0/
 
   # Displayed in the footer
   brief: Einige Rechte vorbehalten.
   verbose: >-
-    Alle Einträge auf dieser Seite stehen, soweit nicht anders angegeben, unter der Lizenz Creative Commons Attribution 4.0 (CC BY 4.0).
+    Alle Einträge auf dieser Seite stehen, soweit nicht anders angegeben, unter der Lizenz Creative Commons Attribution 4.0 (CC BY-NC-ND 3.0).
 
 meta: Powered by :PLATFORM with :THEME theme
 

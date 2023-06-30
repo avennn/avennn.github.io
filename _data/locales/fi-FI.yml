@@ -31,13 +31,13 @@ copyright:
   # Shown at the bottom of the post
   license:
     template: Tämä julkaisu on lisenssoitu :LICENSE_NAME julkaisijan toimesta.
-    name: CC BY 4.0
-    link: https://creativecommons.org/licenses/by/4.0/
+    name: CC BY-NC-ND 3.0
+    link: https://creativecommons.org/licenses/by-nc-nd/3.0/
 
   # Displayed in the footer
   brief: Jotkut oikeudet pidätetään.
   verbose: >-
-    Paitsi jos erikseen mainitaan on kaikki sisältö Creative Commons Attribution 4.0 International (CC BY 4.0) Lisensoitu kirjoittajan toimesta.
+    Paitsi jos erikseen mainitaan on kaikki sisältö Creative Commons Attribution 4.0 International (CC BY-NC-ND 3.0) Lisensoitu kirjoittajan toimesta.
 
 meta: Käytetään :PLATFORM iä Teema :THEME
 
@@ -74,11 +74,11 @@ post:
 # See: <http://strftime.net/>, <https://day.js.org/docs/en/display/format>
 df:
   post:
-    strftime: "%b %e, %Y"
-    dayjs: "ll"
+    strftime: '%b %e, %Y'
+    dayjs: 'll'
   archives:
-    strftime: "%b"
-    dayjs: "MMM"
+    strftime: '%b'
+    dayjs: 'MMM'
 
 # categories page
 categories:

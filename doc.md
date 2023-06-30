@@ -17,5 +17,4 @@ https://realfavicongenerator.net/
 
 - [ ] 有时候修改scss，serve不生效，缓存更新失效？
 - [ ] 字体样式加载后页面抖动问题
-- [ ] 文章授权协议
 - [ ] google 分析, Google Analytics 4

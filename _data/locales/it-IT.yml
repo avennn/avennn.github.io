@@ -31,14 +31,14 @@ copyright:
   # Shown at the bottom of the post
   license:
     template: Questo post è sotto licenza :LICENSE_NAME a nome dell'autore.
-    name: CC BY 4.0
-    link: https://creativecommons.org/licenses/by/4.0/
+    name: CC BY-NC-ND 3.0
+    link: https://creativecommons.org/licenses/by-nc-nd/3.0/
 
   # Displayed in the footer
   brief: Alcuni diritti riservati.
   verbose: >-
     Eccetto quando esplicitamente menzionato, i post di questo blog sono da ritenersi sotto
-    i termini di licenza Creative Commons Attribution 4.0 International (CC BY 4.0).
+    i termini di licenza Creative Commons Attribution 4.0 International (CC BY-NC-ND 3.0).
 
 meta: Servizio offerto da :PLATFORM con tema :THEME
 not_found:
@@ -74,11 +74,11 @@ post:
 # See: <http://strftime.net/>, <https://day.js.org/docs/en/display/format>
 df:
   post:
-    strftime: "%b %e, %Y"
-    dayjs: "ll"
+    strftime: '%b %e, %Y'
+    dayjs: 'll'
   archives:
-    strftime: "%b"
-    dayjs: "MMM"
+    strftime: '%b'
+    dayjs: 'MMM'
 
 # categories page
 categories:

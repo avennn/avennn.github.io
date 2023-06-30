@@ -32,14 +32,14 @@ copyright:
   # Shown at the bottom of the post
   license:
     template: A bejegyzés :LICENSE_NAME licenccel rendelkezik.
-    name: CC BY 4.0
-    link: https://creativecommons.org/licenses/by/4.0/
+    name: CC BY-NC-ND 3.0
+    link: https://creativecommons.org/licenses/by-nc-nd/3.0/
 
   # Displayed in the footer
   brief: Néhány jog fenntartva.
   verbose: >-
     Az oldalon található tartalmak
-    Creative Commons Attribution 4.0 International (CC BY 4.0) licenccel rendelkeznek,
+    Creative Commons Attribution 4.0 International (CC BY-NC-ND 3.0) licenccel rendelkeznek,
     hacsak másképp nincs jelezve.
 
 meta: Készítve :PLATFORM motorral :THEME témával

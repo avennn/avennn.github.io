@@ -31,13 +31,13 @@ copyright:
   # Shown at the bottom of the post
   license:
     template: 本文章以 :LICENSE_NAME 授權
-    name: CC BY 4.0
-    link: https://creativecommons.org/licenses/by/4.0/
+    name: CC BY-NC-ND 3.0
+    link: https://creativecommons.org/licenses/by-nc-nd/3.0/
 
   # Displayed in the footer
   brief: 保留部份權利。
   verbose: >-
-    除非另有說明，否則本網誌的文章均由作者按照姓名標示 4.0 國際 (CC BY 4.0) 授權條款進行授權。
+    除非另有說明，否則本網誌的文章均由作者按照姓名標示 4.0 國際 (CC BY-NC-ND 3.0) 授權條款進行授權。
 
 meta: 本網站使用 :PLATFORM 產生，採用 :THEME 主題
 
@@ -74,8 +74,8 @@ post:
 # See: <http://strftime.net/>, <https://day.js.org/docs/en/display/format>
 df:
   post:
-    strftime: "%Y/%m/%d"
-    dayjs: "YYYY/MM/DD"
+    strftime: '%Y/%m/%d'
+    dayjs: 'YYYY/MM/DD'
 
 # categories page
 categories:

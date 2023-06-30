@@ -31,14 +31,14 @@ copyright:
   # Shown at the bottom of the post
   license:
     template: Den här posten är publicerad under licensen :LICENSE_NAME av författaren.
-    name: CC BY 4.0
-    link: https://creativecommons.org/licenses/by/4.0/
+    name: CC BY-NC-ND 3.0
+    link: https://creativecommons.org/licenses/by-nc-nd/3.0/
 
   # Displayed in the footer
   brief: Vissa rättigheter är reserverade.
   verbose: >-
     Om inte annat anges är blogginläggen på denna webbplats licensierade
-     under Creative Commons Attribution 4.0 International (CC BY 4.0) av författaren.
+     under Creative Commons Attribution 4.0 International (CC BY-NC-ND 3.0) av författaren.
 
 meta: Byggd med :PLATFORM och temat :THEME
 
@@ -75,11 +75,11 @@ post:
 # See: <http://strftime.net/>, <https://day.js.org/docs/en/display/format>
 df:
   post:
-    strftime: "%b %e, %Y"
-    dayjs: "ll"
+    strftime: '%b %e, %Y'
+    dayjs: 'll'
   archives:
-    strftime: "%b"
-    dayjs: "MMM"
+    strftime: '%b'
+    dayjs: 'MMM'
 
 # categories page
 categories:

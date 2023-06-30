@@ -31,13 +31,13 @@ copyright:
   # Shown at the bottom of the post
   license:
     template: Bu gönderi :LICENSE_NAME lisansı altındadır.
-    name: CC BY 4.0
-    link: https://creativecommons.org/licenses/by/4.0/deed.tr
+    name: CC BY-NC-ND 3.0
+    link: https://creativecommons.org/licenses/by-nc-nd/3.0/deed.tr
 
   # Displayed in the footer
   brief: Bazı hakları saklıdır.
   verbose: >-
-    Aksi belirtilmediği sürece, bu sitedeki gönderiler Creative Commons Atıf 4.0 Uluslararası (CC BY 4.0) Lisansı altındadır.
+    Aksi belirtilmediği sürece, bu sitedeki gönderiler Creative Commons Atıf 4.0 Uluslararası (CC BY-NC-ND 3.0) Lisansı altındadır.
     Kısaca sayfa linkini de vererek paylaşabilir veya düzenleyip paylaşabilirsin.
 
 meta: :PLATFORM ve :THEME teması
