@@ -224,7 +224,7 @@ console.log(chalk.cyan('Digesting blog...'));
 // await shell.rm('-rf', blogTempImgOutputDir);
 
 const fileNameWithSuffix = path.basename(blogPath);
-const fileName = fileNameWithSuffix.substring(0, fileNameWithSuffix.indexOf('.'));
+const fileName = fileNameWithSuffix.substring(0, fileNameWithSuffix.lastIndexOf('.'));
 const destName = `${dayjs().format('YYYY-MM-DD')}-${fileName}.md`;
 const destPath = path.join(blogOutputDir, destName);
 
