@@ -4,7 +4,9 @@
 
 https://avennn.github.io/
 
-## Blog list(21)
+## Blog list(22)
+
+- [Typescript 5.2 Beta发布，带来全新的using声明](https://avennn.github.io/posts/4064bc7a-fc4e-4e99-8555-0b2298436345/)
 
 - [Typescript系列：索引访问类型](https://avennn.github.io/posts/444190b2-f3aa-44d4-b799-f3cff5632d50/)
 

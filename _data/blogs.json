@@ -212,5 +212,16 @@
     "postName": "2023-06-19-Typescript系列：索引访问类型.md",
     "date": "2023-06-19 18:05:39 +0800",
     "images": ["adaa1c97-aaa6-41c9-8561-40895eefbb0d.png"]
+  },
+  "4064bc7a-fc4e-4e99-8555-0b2298436345": {
+    "title": "Typescript 5.2 Beta发布，带来全新的using声明",
+    "postName": "2023-07-30-Typescript 5.2 Beta发布，带来全新的using声明.md",
+    "date": "2023-07-30 22:28:01 +0800",
+    "images": [
+      "b5bd3da2-34ff-4fca-95f2-f1440f2b66ac.png",
+      "cea66129-a29e-4336-9ab6-fe152958d8b8.png",
+      "eeb425e2-0268-4ffa-b908-ccdf5d9dd804.png",
+      "14d1cc60-d38c-4635-b704-cbe0c9e31de6.png"
+    ]
   }
 }
