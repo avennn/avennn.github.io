@@ -1,12 +1,18 @@
 # 杂物
 
+## 新增博客
+
+```sh
+yarn digest
+```
+
 ## logo 生成
 
 https://realfavicongenerator.net/
 
 ## 博客封面图选择
 
-- dota
+- dota（[dota2精美壁纸](https://www.dota2.com.cn/enjoy/gamewall/index2.htm)）
 - 小时候的物件
 - 火影
 - 美景
